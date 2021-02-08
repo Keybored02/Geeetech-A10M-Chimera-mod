@@ -16,10 +16,10 @@ Let's talk about the "original" 2-in-1 hotend. Inspired by the E3D Cyclops, its 
 ![Hotend Comparison](hotend_comparison.jpg)
 
 Geeetech implemented a few flaws in their designs. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heatblock that supposedly prevent molten filament from climbing up the other throath. Not only the do not work (I still got a clogged bowden), but they even limit retraction. 
+
 **NOTE: Factory firmware limits the retraction to 25mm/s, no matter the slicer's settings**
 ![disks](disks_closeup.jpg)
 ![disks](disks_position_1.jpg)
-![disks](disks_position_2.jpg)
-![disks](disks_position_3.jpg)
+
 
 
