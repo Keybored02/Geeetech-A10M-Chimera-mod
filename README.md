@@ -10,6 +10,6 @@ I had two objectives:
 2. Upgrade to a 2-in-2 Chimera hotend (for cheap)
 
 
-**Part 1.0: Reliable is not in the Chinese vocabulary**
+# Part 1.0: Reliable is not in the Chinese vocabulary
 
 Let's talk about the "original" 2-in-1 hotend. Inspired by the E3D Cyclops, its an all-metal design with a single haeting cartridge, a single thermistor and an M7 nozzle. As far as I know, Geeetech produced 2 iterations of this extruder: the only difference is the heatsink design, the rest remains unchanged.  
