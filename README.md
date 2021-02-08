@@ -18,9 +18,8 @@ Let's talk about the "original" 2-in-1 hotend. Inspired by the E3D Cyclops, its 
 
 Geeetech implemented a few flaws in their designs. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heatblock that supposedly prevent molten filament from climbing up the other throath. Not only they do not work (I still got a clogged bowden), but they even limit retraction. In my experience, removing them changes very little. **NOTE: Factory firmware limits the retraction to 25mm/s, no matter the slicer's settings**
 
-![disks](disks_closeup.jpg)
+![disks](disks_closeup.jpg) ![disks](disks_position_1.jpg)
 
-![disks](disks_position_1.jpg)
 
 The other big issue is the amount of glue that holds all the screws on the heatblock and the heatbreaks themselves. In order to unscrew them, you have to heat them up at around 450°C with an heat gun. Otherwise, you'll just dent them (as shown in the image).
 
@@ -41,9 +40,9 @@ Altough this is pretty much unfixable (as it is a structural flaw), we can still
 3. Giving up color mixing (explained further later).
 
 
-# Part 1.2: One solution to rule them all
+# Part 1.2: A 1-in-1 mod
 
-A 1-in-1 or 2-in-2 mod. That's it. The design is flawed? Change the design.
+The solution is a 1-in-1 or 2-in-2 mod. That's it. The design is flawed? Change the design.
 
 Let's start from the easiest one, the 1-in-1. Assuming that you already have the 2-in-1 hotend, what you need is a V6 heatblock:
 * [Original V6 Heatblock (incompatible with the stock thermistor)](https://e3d-online.com/products/v6-heaterblock-for-sensor-cartridges)
@@ -52,4 +51,15 @@ Let's start from the easiest one, the 1-in-1. Assuming that you already have the
 By using the unofficial clone you can keep the awful stock thermistor and the heating cartridge. You'll still have to change the nozzle, as Geeetech uses an M7 threading, and the V6 family uses M6. My personal suggestions:
 * [E3D original](https://e3d-online.com/products/v6-nozzles)
 * [Trianglelab (unofficial)](https://it.aliexpress.com/item/32965509920.html?spm=a2g0o.detail.100009.2.1ced540ek9SFEo&gps-id=pcDetailLeftTopSell&scm=1007.13482.95643.0&scm_id=1007.13482.95643.0&scm-url=1007.13482.95643.0&pvid=48714b26-6e22-44f8-85ef-789399836e91&_t=gps-id:pcDetailLeftTopSell,scm-url:1007.13482.95643.0,pvid:48714b26-6e22-44f8-85ef-789399836e91,tpp_buckets:668%230%23131923%23100_668%23888%233325%235_668%232846%238113%231998_668%232717%237563%23523_668%231000022185%231000066059%230_668%233480%2315683%23647)
-Since you are already at it, why not upgrading to an hardened steel one?
+
+Since you are already at it, why not upgrading it to an hardened steel one?
+
+Now that you have all you need, you can unistall the 2-in-1 following [this guide](https://github.com/caesar1111/Geeetech-A10M-HotEnd-Maintenance/blob/master/A10M_HotEnd_Maintenance.md). The assembly of the heatbreak-heatblock(V6)-cartridge-thermistor is really straigthforward, and I won't cover it here. What I will cover instead is the heatsink placement:
+
+* dual heatsink (silver): use only one heatsink, insert the prevoiusly assembled block, align the indentation and screw in the heatbreak. Install the fans on the two sides. Screw the heatsink to the cage using the central holes (as shown in the picture).
+![]
+
+
+While reassembling it use the V6 block in the spot of the stock one and keep following the steps, leaving one of the throaths empty. The end result should look really similar to an [A10 hotend](https://www.geeetech.com/geeetech-a10-a30-a30-pro-a20-3d-printer-24v-printing-head-p-1041.html). If you have the black, single heatsink the procedure is the same.
+
+Now that you have downgraded your A10M to an A10, lets' fix a couple of things: 
