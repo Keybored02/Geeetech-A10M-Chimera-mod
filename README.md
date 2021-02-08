@@ -16,9 +16,7 @@ Let's talk about the "original" 2-in-1 hotend. Inspired by the E3D Cyclops, its 
 
 ![Hotend Comparison](hotend_comparison.jpg)
 
-Geeetech implemented a few flaws in their designs. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heatblock that supposedly prevent molten filament from climbing up the other throath. Not only they do not work (I still got a clogged bowden), but they even limit retraction. In my experience, removing them changes very little.
-
-**NOTE: Factory firmware limits the retraction to 25mm/s, no matter the slicer's settings**
+Geeetech implemented a few flaws in their designs. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heatblock that supposedly prevent molten filament from climbing up the other throath. Not only they do not work (I still got a clogged bowden), but they even limit retraction. In my experience, removing them changes very little. **NOTE: Factory firmware limits the retraction to 25mm/s, no matter the slicer's settings**
 
 ![disks](disks_closeup.jpg)
 
@@ -36,5 +34,14 @@ Consider also that the main difference between this and, let's say, a V6 hotend 
 # Part 1.1: Solutions?
 
 Altough this is pretty much unfixable (as it is a structural flaw), we can still do something to mitigate the issue:
-1. Printing with 2 filaments at any given time. They can be of the same color (two identical spools at 50-50%), or different . While extruding 2 filaments you're also retracting from both sides, mitigating the aforementioned oozing. 
-**NOTE: Materials of different colors can have different printing temperatures due to the pigments they incorporate.**
+1. Printing with 2 filaments at any given time. They can be of the same color (two identical spools at 50-50%), or different . While extruding 2 filaments you're also retracting from both sides, mitigating the aforementioned oozing. **NOTE: Materials of different colors can have different printing temperatures due to the pigments they incorporate.**
+
+2. Sticking a piece of filament into the unused heatbreak. Make sure that the printing temperature of this one is substantially higher than the one of material you'll actually print with.
+
+3. Giving up color mixing (explained further later).
+
+
+# Part 1.2: One solution to rule them all
+
+A 1-in-1 or 2-in-2 mod. That's it.
+
