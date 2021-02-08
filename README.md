@@ -56,10 +56,14 @@ Since you are already at it, why not upgrading it to an hardened steel one?
 
 Now that you have all you need, you can unistall the 2-in-1 following [this guide](https://github.com/caesar1111/Geeetech-A10M-HotEnd-Maintenance/blob/master/A10M_HotEnd_Maintenance.md). The assembly of the heatbreak-heatblock(V6)-cartridge-thermistor is really straigthforward, and I won't cover it here. What I will cover instead is the heatsink placement:
 
-* dual heatsink (silver): use only one heatsink, insert the prevoiusly assembled block, align the indentation and screw in the heatbreak. Install the fans on the two sides. Screw the heatsink to the cage using the central holes (as shown in the picture).
-![Silver Heatsink]
+* dual heatsink (silver): use only one heatsink, insert the previously assembled block, align the indentation and screw in the heatbreak. Install the fans on the two sides. Screw the heatsink to the cage using the central holes (as shown in the picture).
 
+![Silver Heatsink](silver_heatsink_placement.jpg)
 
-While reassembling it use the V6 block in the spot of the stock one and keep following the steps, leaving one of the throaths empty. The end result should look really similar to an [A10 hotend](https://www.geeetech.com/geeetech-a10-a30-a30-pro-a20-3d-printer-24v-printing-head-p-1041.html). If you have the black, single heatsink the procedure is the same.
+* Single heatsink (black): in order to fit in the cage, you need to remove one of the two metal shields at the bottom. Assemble the block, screw the heatbreak, mount only one fan above the reaming metal shield. Screw the heatsink to the cage using the central holes (as shown in the picture). You can attach the second fan externally using some zipties. I don't recommend leaving the entire work to only one fan.
+
+![Black Heatsink](black_heatsink_placement.jpg)
+
+The end result should look really similar to an [A10 hotend](https://www.geeetech.com/geeetech-a10-a30-a30-pro-a20-3d-printer-24v-printing-head-p-1041.html).
 
 Now that you have downgraded your A10M to an A10, lets' fix a couple of things: 
