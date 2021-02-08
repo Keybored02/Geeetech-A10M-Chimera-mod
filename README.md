@@ -46,6 +46,6 @@ Altough this is pretty much unfixable (as it is a structural flaw), we can still
 A 1-in-1 or 2-in-2 mod. That's it. The design id flawed? Change the design.
 
 Let's start from the easiest one, the 1-in-1. Assuming that you already have the 2-in-1 hotend, is a V6 heatblock:
-* [Original V6 Heatblock (incompatible with the stock thermistor)] (https://e3d-online.com/products/v6-heaterblock-for-sensor-cartridges)
-* [Clone (compatible, select the unofficial one)] (https://it.aliexpress.com/item/32849595265.html?spm=a2g0o.productlist.0.0.289a21c5BJL6ka&algo_pvid=2ea0c950-dbdc-4134-aab4-0d17e1c7d871&algo_expid=2ea0c950-dbdc-4134-aab4-0d17e1c7d871-7&btsid=2100bdd016128109868592368ecdc2&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_)
+* [Original V6 Heatblock (incompatible with the stock thermistor)](https://e3d-online.com/products/v6-heaterblock-for-sensor-cartridges)
+* [Clone (compatible, select the unofficial one)](https://it.aliexpress.com/item/32849595265.html?spm=a2g0o.productlist.0.0.289a21c5BJL6ka&algo_pvid=2ea0c950-dbdc-4134-aab4-0d17e1c7d871&algo_expid=2ea0c950-dbdc-4134-aab4-0d17e1c7d871-7&btsid=2100bdd016128109868592368ecdc2&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_)
 
