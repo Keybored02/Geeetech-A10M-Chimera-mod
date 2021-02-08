@@ -4,13 +4,13 @@ A guide on how to install an E3D Chimera hotend on the Geeetech A10M
 
 # Summary
 
-[**Introduction](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#introduction)
+[Introduction](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#introduction)
 
-[**1.0: Reliable is not in the Chinese vocabulary](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-10-reliable-is-not-in-the-chinese-vocabulary)
+[1.0: Reliable is not in the Chinese vocabulary](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-10-reliable-is-not-in-the-chinese-vocabulary)
 
-[**1.1: Solutions?](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-11-solutions)
+[1.1: Solutions?](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-11-solutions)
 
-[**1.2: A 1-in-1 mod](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-12-a-1-in-1-mod)
+[1.2: A 1-in-1 mod](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-12-a-1-in-1-mod)
 
 # Introduction
 
