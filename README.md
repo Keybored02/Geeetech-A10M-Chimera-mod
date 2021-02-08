@@ -16,7 +16,7 @@ Let's talk about the "original" 2-in-1 hotend. Inspired by the E3D Cyclops, its 
 
 ![Hotend Comparison](hotend_comparison.jpg)
 
-Geeetech implemented a few flaws in their designs. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heatblock that supposedly prevent molten filament from climbing up the other throath. Not only the do not work (I still got a clogged bowden), but they even limit retraction. 
+Geeetech implemented a few flaws in their designs. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heatblock that supposedly prevent molten filament from climbing up the other throath. Not only they do not work (I still got a clogged bowden), but they even limit retraction. In my experience, removing them changes very little.
 
 **NOTE: Factory firmware limits the retraction to 25mm/s, no matter the slicer's settings**
 
@@ -24,5 +24,9 @@ Geeetech implemented a few flaws in their designs. First of all, anti-backflow d
 
 ![disks](disks_position_1.jpg)
 
+The other big issue is the amount of glue that holds all the screws on the heatblock and the heatbreaks themselves. In order to unscrew them, you have to heat them up at around 450°C with an heat gun. Otherwise, you'll dent them (as shown in the image).
 
+Now, let's talk about the flaws that are not Geeetech's fault. The 2-in-1 Cyclops (even the original one) hotends are not designed to print with a single filamnet, but always with two. If you're experiencing unwordly oozing and stringing with only one filament, there's not much you can do. The following diagram explains it (it's a theoretical hypotesi, not checked or supported by anyone other than me)
+
+![Hotend Comparison](hotend_comparison.jpg)
 
