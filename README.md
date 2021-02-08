@@ -25,7 +25,7 @@ The other big issue is the amount of glue that holds all the screws on the heatb
 
 Now, let's talk about the flaws that are not Geeetech's fault. The 2-in-1 Cyclops (even the original one) hotends are not designed to print with a single filamnet, but always with two. If you're experiencing unwordly oozing and stringing with only one filament, there's not much you can do. The following diagram explains it (it's a theoretical hypotesi, not checked or supported by anyone other than me):
 
-![Hotend Diagram](Hotend_Clog_Explained.png)
+![Hotend Diagram](Hotend_Clog.png)
 
 Consider also that the main difference between this and, let's say, a V6 hotend is the number of angles that the filament has to go through before being extruded, and the fact that the length actually exposed to heat is bigger in the 2-in-1 (as the filament flows parallel to the heating cartridge, rather than perpendicularly), making it more similar to a Volcano hotend. Both of this elements need to be kept in consideration in our case.
 
