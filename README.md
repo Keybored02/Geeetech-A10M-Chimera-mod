@@ -82,3 +82,6 @@ Now that you have downgraded your A10M to an A10, lets' fix a couple of things:
 2. Flash Marlin 2.0. You can follow [this video](https://www.youtube.com/watch?v=J14uJEd4XLU), but there are also many others that you can find. Besides all the cool new features, you'll also get the ability to actually change your retraction settings. The 1-in-1 mod doesn't require specific changes. If you already have Marlin 2.0 on your board, no re-flash needed
 3. PID tuning. Since you've changed the thermal configuration of the hotend, a PID tuning could be helpful if you are seing the temp readings fluctuate. keep in mind that the thermistor is pretty inaccurate...[Video](https://www.youtube.com/watch?v=h9Rdid-T-Gw)
 4. Calibration tests and benches. Run everything again: XYZ cube, retraction and stringing tests, linear advance calibration etc.
+
+
+Th 2-in-2 Chimera mod will arrive soon. Stay tuned.
