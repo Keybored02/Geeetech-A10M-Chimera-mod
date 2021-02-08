@@ -13,4 +13,4 @@ I had two objectives:
 # Part 1.0: Reliable is not in the Chinese vocabulary
 
 Let's talk about the "original" 2-in-1 hotend. Inspired by the E3D Cyclops, its an all-metal design with a single haeting cartridge, a single thermistor and an M7 nozzle. As far as I know, Geeetech produced 2 iterations of this extruder: the only difference is the heatsink design, the rest remains unchanged.
-![Hotend Comparison](/images/hotend_comparison.jpg)
+![Hotend Comparison](hotend_comparison.jpg)
