@@ -43,9 +43,13 @@ Altough this is pretty much unfixable (as it is a structural flaw), we can still
 
 # Part 1.2: One solution to rule them all
 
-A 1-in-1 or 2-in-2 mod. That's it. The design id flawed? Change the design.
+A 1-in-1 or 2-in-2 mod. That's it. The design is flawed? Change the design.
 
-Let's start from the easiest one, the 1-in-1. Assuming that you already have the 2-in-1 hotend, is a V6 heatblock:
+Let's start from the easiest one, the 1-in-1. Assuming that you already have the 2-in-1 hotend, what you need is a V6 heatblock:
 * [Original V6 Heatblock (incompatible with the stock thermistor)](https://e3d-online.com/products/v6-heaterblock-for-sensor-cartridges)
 * [Clone (compatible, select the unofficial one)](https://it.aliexpress.com/item/32849595265.html?spm=a2g0o.productlist.0.0.289a21c5BJL6ka&algo_pvid=2ea0c950-dbdc-4134-aab4-0d17e1c7d871&algo_expid=2ea0c950-dbdc-4134-aab4-0d17e1c7d871-7&btsid=2100bdd016128109868592368ecdc2&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_)
 
+By using the unofficial clone you can keep the awful stock thermistor and the heating cartridge. You'll still have to change the nozzle, as Geeetech uses an M7 threading, and the V6 family uses M6. My personal suggestions:
+* [E3D original](https://e3d-online.com/products/v6-nozzles)
+* [Trianglelab (unofficial)](https://it.aliexpress.com/item/32965509920.html?spm=a2g0o.detail.100009.2.1ced540ek9SFEo&gps-id=pcDetailLeftTopSell&scm=1007.13482.95643.0&scm_id=1007.13482.95643.0&scm-url=1007.13482.95643.0&pvid=48714b26-6e22-44f8-85ef-789399836e91&_t=gps-id:pcDetailLeftTopSell,scm-url:1007.13482.95643.0,pvid:48714b26-6e22-44f8-85ef-789399836e91,tpp_buckets:668%230%23131923%23100_668%23888%233325%235_668%232846%238113%231998_668%232717%237563%23523_668%231000022185%231000066059%230_668%233480%2315683%23647)
+Since you are already at it, why not upgrading to an hardened steel one?
