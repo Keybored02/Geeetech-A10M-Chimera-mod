@@ -70,7 +70,7 @@ Now that you have all you need, you can unistall the 2-in-1 following [this guid
 
 ![Silver Heatsink](silver_heatsink_placement.jpg)
 
-* Single heatsink (black): in order to fit in the cage, you need to remove one of the two metal shields at the bottom. Assemble the block, screw the heatbreak, mount only one fan above the remaining metal shield. Screw the heatsink to the cage using the central holes (as shown in the picture). You can attach the second fan externally using some zipties. I don't recommend leaving the entire work to only one fan.
+* Single heatsink (black): in order to fit in the cage, you need to remove one of the two metal shields at the bottom. Assemble the block, screw the heatbreak, mount only one fan above the remaining metal shield. Screw the heatsink to the cage using the central holes (as shown in the picture). You can attach the second fan externally using some zipties. I don't recommend leaving the entire work to only one fan, since the thermal mass is considerable and the flow would cover only one side.
 
 ![Black Heatsink](black_heatsink_placement.jpg)
 
