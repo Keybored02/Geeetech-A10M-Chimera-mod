@@ -14,7 +14,7 @@ A guide on how to install an E3D Chimera hotend on the Geeetech A10M
 
 # Introduction
 
-I purchased my A10M for Christams, with the intent of modding it to print dual materials at different temperatures (a thing quite hard on the stock model, as it has only one haeting cartiridge for both, forcing the tempertaure to fluctuate between the melting points of the 2 of them). I soon realized that the Cyclops-style hotend is not ideal if you’re printing with only one filament: melted material was flowing back through the other bowden tube, retraction was uneffective, oozing and stringing was unbereable. So, I decided that enough was enough.
+I purchased my A10M for Christmas, with the intent of modding it to print dual materials at different temperatures (a thing quite hard on the stock model, as it has only one haeting cartiridge for both, forcing the tempertaure to fluctuate between the melting points of the 2 of them). I soon realized that the Cyclops-style hotend is not ideal if you’re printing with only one filament: melted material was flowing back through the other bowden tube, retraction was uneffective, oozing and stringing was unbereable. So, I decided that enough was enough.
 I had two objectives:
 1. Getting the printer to print reliably (spoiler, I can't)
 2. Upgrade to a 2-in-2 Chimera hotend (for cheap)
