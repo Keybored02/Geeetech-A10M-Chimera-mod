@@ -86,7 +86,11 @@ Now that you have downgraded your A10M to an A10, lets' fix a couple of things:
 # Part 2.0: A 2-in-2 mod
 
 Color mixing surely it's cool, but it's also a limiting factor that prevents the printer from getting consistent, single-extruder results. While going 1-in-1 as explained in Part 1.2 solves the issue, it's more of a downgrade than an improvement. You paid for two extruders, you have to use both of them!.
-You can get a Dua Extruder set up quite easily with the help of the E3D's Chimera+, which is basically a heatsink with two hollowings for two separate haetbreaks. It's integrated in the V6 ecosystem, so you can use the block and nozzles from a normal V6 hot end (heatbreaks are different). You can get the Chimera 
+You can get a Dua Extruder set up quite easily with the help of the E3D's Chimera+, which is basically a heatsink with two hollowings for two separate haetbreaks. It's integrated in the V6 ecosystem, so you can use the block and nozzles from a normal V6 hot end (heatbreaks are different). 
+
+![Chimera+ original](Chimera+_E3D.jpg)
+
+You can get the Chimera 
 * [E3D Original](https://e3d-online.com/products/chimera)
 * [Trianglelab clone](https://it.aliexpress.com/item/32908238691.html?spm=a2g0o.store_pc_allProduct.8148356.9.77b627c6nWPtjm)
 
@@ -104,6 +108,8 @@ Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech stor
 
 This happens on other Geeetech boards too, across all models. 
 A couple of additional considerations:
-- The MOLEX connector that links the mainboard to the breakout board on the back of the X carriage is a total mess. Albeit showing 4 labeled haeter headers, they're not actaully separated and in parallel, bur are wired in serially. In other words, it's just one line split across 4 ports. This puts a tremendous load on both ends in case 4 heaters are connected. Fire safety is a joke, isn't it? ![Breakout board](breakout board.jpg)
+- The MOLEX connector that links the mainboard to the breakout board on the back of the X carriage is a total mess. Albeit showing 4 labeled haeter headers, they're not actaully separated and in parallel, bur are wired in serially. In other words, it's just one line split across 4 ports. This puts a tremendous load on both ends in case 4 heaters are connected. Fire safety is a joke, isn't it? 
+- ![Breakout board](breakout board.jpg)
 - What just said applies to fan and temp sensors too: it's one line, duplicated to two headers. If you run the math, it doesn't add up: the breakout board's MOLEX is 2x6, so 12 pins. 6 less than what the mainboard has. Wired in are 2 pins for the HE0, 2 for the temp sensor, 2 for a constant fan and 2 for the PWM fan, 4 for the BLTouch probe (one common ground). Total = 12 pins. There's no space for other lines.
-- On the mainboard side, the 2x9 connector is actually wired to HE1 and HE2, as well as T1 and T0 (the two tempearture sensors). But waiy a minute, if HE0is actually what we're usig (and we know it's connected), why doesn't the 2x9 list it? And why does it say that it connects to HE2, but not T2? It's piloting a haeter without feedback? It's probably just a tyo in the schematic, but remains extremely confusing. ![breakout schematic](breakout schematic.png)
+- On the mainboard side, the 2x9 connector is actually wired to HE1 and HE2, as well as T1 and T0 (the two tempearture sensors). But waiy a minute, if HE0is actually what we're usig (and we know it's connected), why doesn't the 2x9 list it? And why does it say that it connects to HE2, but not T2? It's piloting a haeter without feedback? It's probably just a tyo in the schematic, but remains extremely confusing. 
+- ![breakout schematic](breakout schematic.png)
