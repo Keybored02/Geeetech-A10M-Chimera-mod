@@ -366,10 +366,8 @@ G92 E0 ; zero extruded length
 T0; switch back to T0 to avoid Fan not starting
 ;end of start script
 ```
-Modify it to your desire.
-
-Extruder start and end Gcode will be discussed later.
+Modify it to your desire. Extruder start and end Gcode will be discussed later.
 
 Under the Dual Extrusion menu we'll se the _Nozzle Switch Retraction Speed_ to our current retraction speed (I use 40mm/s for PLA, but yours migth be different). _Nozzle Switch Retraction Distance_ should be set equal to the lenght of the heating zone. For a V6 block that's 16mm, plus 4mm circa of protuding nozzle. 18-20mm is good starting point.
 
-For now, this will be sufficient. More in-depth discussion are present in Part 6.0.
+For now, this will be sufficient. More in-depth discussions are present in Part 6.0.
