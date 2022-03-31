@@ -196,7 +196,7 @@ Second of all, check that the pins for the second thermistor and heater are defi
 #define FAN1_PIN                               8
 #define FAN2_PIN                               7
 ```
-If the pins for a second heater are not assigned, chances are they're not ven present, refer to the manufacturer's schematic, or consult the Part 4.1
+If the pins for a second heater are not assigned, chances are they're not even present, refer to the manufacturer's schematic, or consult the Part 4.2.
 
 Uncomment
 
@@ -253,7 +253,8 @@ Option 2 is also not straigthforward, and will require a janky workaround. It's 
 
 As far as I'm aware, only the V4.0 and later (4.0B, 4.1) boards suffer from partially populated traces. V3.0 should be spared (I included the schematics anyway).
 Usually, the non-populated traces belong to a MOSFETs, red LEDs, a couple resitors (100kOhms and 2.7kOhms), a diode, and a through-hole 2.54mm pitch headers for a JST XH-2.54 connector. 
-I'm positive the package of the FET is an SOT669. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, while the V3.0 uses specifically the PSMN7R0-30YL. I think they're the same and are just mislabled in GT2560_V4.0_SCH.pdf, but I'm unable to verify this. The diodes are 1N5819 (DO-214AC or SOD-123F package, unable to verify). Schematics are included in this repository for those who want them. It should be as easy as soldering everythingn in. Pin definition stays the same. Of course, as long as they're within (or above) specs, you can use other components. Verify also that the traces are actually connected to the MCU and that ground is actually grounded.
+I'm positive the package of the FET is an SOT669. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, while the V3.0 uses specifically the PSMN7R0-30YL. I think they're the same and are just mislabled in GT2560_V4.0_SCH.pdf, but I'm unable to verify this. The diodes are 1N5819 (DO-214AC or SOD-123F package, unable to verify). Schematics are included in this repository for those who want them. It should be as easy as soldering everythingn in. Pin definition stays the same. Of course, as long as they're within (or above) specs, you can use other components. Verify also that the traces are actually connected to the MCU and that ground is actually grounded. Asa reference, here's a brand new GT2560 V4.0, fully populated.
+![fully populated board](populated_board_for_comparison.jpg)
 
 Follow Part 3.0 and 3.1 for wiring and firmware setup.
 
@@ -293,3 +294,7 @@ and instead I'm gonna add the lines
 with the pins of your choice.
 
 You can now follow the instructions in Part 3.1 to complete the extruder setup.
+
+# Part 5.0: Calibrations
+
+
