@@ -106,11 +106,11 @@ A couple of considerations on the Trianglelab's clone: it's machined precisely, 
 
 # Part 2.1: The board is the limit
 
-If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? The answer is: yes, at one condition. Your board must come with an header for a second thermistor and heating cartiridge. What follows is a rant on the status of Geeetech boards.
+If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? The answer is: yes, at one condition. Your board must come with an header for a second thermistor and heating cartridge. What follows is a rant on the status of Geeetech boards.
 
 ![GT2560 v4.0](GT2560_v4.0-100.jpg)
 
-Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech store. Notice anything wrong? The traces for the Heater 1 (HE1) and Heater 2 (HE2) are not populated, while Heater 0 has only the MOSFET, withouth the connector. With this configuration, there's space only for one heater (which is already in use). If they already have the traces layed, why not using them? I'm sure that is not an unbearable expense to add a few connectors and SMD MOSFETs. You wanna know how I know that? Because on previous models, manufactured in 2019 and earlier (like the one I have), all traces are populated (image pulled from the [official forum](https://www.geeetech.com/forum/viewtopic.php?f=18&t=69799&start=30)).
+Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech online store. Notice anything wrong? The traces for the Heater 1 (HE1) and Heater 2 (HE2) are not populated, while Heater 0 has only the MOSFET, withouth the connector. With this configuration, there's space only for one heater (which is already in use). If they already have the traces layed, why not using them? I'm sure that is not an unbearable expense to add a few connectors and SMD MOSFETs. You wanna know how I know that? Because on previous models, manufactured in 2019 and earlier (like the one I have), all traces are populated (image pulled from the [official forum](https://www.geeetech.com/forum/viewtopic.php?f=18&t=69799&start=30)).
 
 ![GT2560 v4.0 populated](GT2560_V4.0_populated.jpg)
 
@@ -161,28 +161,85 @@ Now that you have everything, let's start.
 - **Adapter mount:** I've designed a mount that is available on [Thingiverse](https://www.thingiverse.com/thing:4795634). It's dsigned to mantain the same Y dimenson in order to minimize firmware changes. You need 3x M3 10mm screws to screw in the Chimera, and you can reuse the factory screws to mount the plate to the carriage.
 - **Wiring and cable management:** This is not as hard as it seems. Decide which one is Extruder 1 (usually the one on the left), and wire its heater to HE0 and its sensors to T0. Again, use the board connectors. If you have them , crimping ferrules for the heater's cables are a good thing to add. Polarity doesn't matter (there's not defined + or -). For Extruder 2 use HE1 and T1. Pass the cables trough the cable slots on the adpater plate and then through carriage. You can bundle the cables in the Molex connector's sleeve or zip-tie them on the exterior. Make sure thy're not strained or under tension.
 - **Fans:** I recommend using this fan duct with a 5015 fan from [Thingiverse](https://www.thingiverse.com/thing:2175956/files). Th fan dcut is mounted on topo of the 3010 fan, using the included self-tapping screws. Be careful to tap in a straigth line. Reconnect the heatsink and part fans on the back of the board (follow the aforementioned diagram) and level the heigth of the fan duct.
-- **Reinsert the Bowdens**: Don't insert the filament yet.
+- **Reinsert the Bowden**: Don't insert the filament yet.
 
-You can, of course, use different mounts and fan ducts. it shouldn't impact on the wiring. 
+You can, of course, use different mounts and fan ducts. It shouldn't impact on the wiring. 
 
 # Part 3.1: The idyllic scenario: firmware for a populated board
 
 For the sake of keeping everything short, I won't include detailed info on how to compile Marlin, but only a brief run of the setting you need to change. 
 
-In Configuration.h uncomment
+First of all, check in Configuration.h that the board definition you're using is correct. For me, it should be set as:
 
-`#define EXTRUDERS 2`
-                      
+`#define MOTHERBOARD BOARD_GT2560_V3`
+
+If you have different MoBo, make sure to edit this. You can find a list of all boards under `Marlin\src\core\boards.h`.
+
+Second of all, check that the pins for the second thermistor and heater are defined. In `Marlin\src\pins\mega\pins_GT2560_V3.h` I can see that they are all set correctly:
+```
+//
+// Temperature Sensors
+//
+#define TEMP_0_PIN                            11  // Analog Input
+#define TEMP_1_PIN                             9  // Analog Input
+#define TEMP_2_PIN                             8  // Analog Input
+#define TEMP_BED_PIN                          10  // Analog Input
+
+//
+// Heaters / Fans
+//
+#define HEATER_0_PIN                          10
+#define HEATER_1_PIN                           3
+#define HEATER_2_PIN                           2
+#define HEATER_BED_PIN                         4
+#define FAN_PIN                                9
+#define FAN1_PIN                               8
+#define FAN2_PIN                               7
+```
+If the pins for a second heater are not assigned, chances are they're not ven present, refer to the manufacturer's schematic, or consult the Part 4.1
+
+Uncomment
+
+`#define EXTRUDERS 2`   
+
 and make sure to comment out
 
 `//#define MIXING_EXTRUDER`
 
 Set the nozzles offset as
-
 ```
 #define HOTEND_OFFSET_X { 0.0, 20.00 } // (mm) relative X-offset for each nozzle
 #define HOTEND_OFFSET_Y { 0.0, 0.0 }  // (mm) relative Y-offset for each nozzle
 ```
 This works for my adapter plate. Other designs migth need a different `HOTEND_OFFSET_Y` value. `HOTEND_OFFSET_X` is defined by the geometry of the Chimera and remains unchanged no matter the adapter. 
 
+In the `Thermal Settings` section, define the thermocouples you're using. If it's the included 104GT-2/104NT-4, set
+```
+#define TEMP_SENSOR_0 5 
+#define TEMP_SENSOR_1 5 
+```
+otherwise, consult the thermistor table.
+
+Set also
+```
+#define HEATER_0_MAXTEMP 285
+#define HEATER_1_MAXTEMP 285
+```
+for the 104GT-2/104NT-4. `MAXTEMP` is actually 15°C higher, at 300°C. The extra headroom is a safety precaution.
+
+Don't forget to define
+```
+#define HEATER_0_MINTEMP 5 
+#define HEATER_1_MINTEMP 5
+```
+to avoid thermal runaway.
+
+This is only the basics. A properly set firmware has many other variales to be defined. Jump now to Part 5.0.
+
+# Part 3.1: The apocalyptic scenario: wiring for an unpopulated board
+
+Now,  if you either have a GT2560 v4.0 board without the connectors or another board (but still without the desired connectors), you can choose 3 paths:
+1. Buy another board. A BTT SKR 1.4/2.0, a BTT Octopus, an MKS Robin NANO V3, and so on.
+2. Buy and solder the missing components
+3. Re-purpose unused pins as HE0 nad T0 headers, and use external MOSFETs modules
 
