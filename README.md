@@ -253,7 +253,9 @@ Option 2 is also not straigthforward, and will require a janky workaround. It's 
 
 As far as I'm aware, only the V4.0 and later (4.0B, 4.1) boards suffer from partially populated traces. V3.0 should be spared (I included the schematics anyway).
 Usually, the non-populated traces belong to a MOSFETs, red LEDs, a couple resitors (100kOhms and 2.7kOhms), a diode, and a through-hole 2.54mm pitch headers for a JST XH-2.54 connector. 
-I'm positive the package of the FET is an SOT669. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, while the V3.0 uses specifically the PSMN7R0-30YL. I think they're the same and are just mislabled in GT2560_V4.0_SCH.pdf, but I'm unable to verify this. The diodes are 1N5819 (DO-214AC or SOD-123F package, unable to verify). Schematics are included in this repository for those who want them. It should be as easy as soldering everythingn in. Pin definition stays the same. Of course, as long as they're within (or above) specs, you can use other components. Verify also that the traces are actually connected to the MCU and that ground is actually grounded. Asa reference, here's a brand new GT2560 V4.0, fully populated.
+I'm positive the package of the FET is an SOT669. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, while the V3.0 uses specifically the PSMN7R0-30YL. I think they're the same and are just mislabled in GT2560_V4.0_SCH.pdf, but I'm unable to verify this. 
+The diodes are 1N5819 (DO-214AC or SOD-123F package, unable to verify). Schematics are included in this repository for those who want them. 
+It should be as easy as soldering everythingn in. Pin definition stays the same. Of course, as long as they're within (or above) specs, you can use other components. Verify also that the traces are actually connected to the MCU and that ground is actually grounded. Asa reference, here's a brand new GT2560 V4.0, fully populated.
 ![fully populated board](populated_board_for_comparison.jpg)
 
 Follow Part 3.0 and 3.1 for wiring and firmware setup.
@@ -271,7 +273,7 @@ The main idea here is to re-assign unused pins to the HE1 and T1 headers. The ex
 Of course, it's not as straigthforward as plugging the connector in another spot and changing pin definition in firmware. You'll have to add a resistor and a capacitor to the mix (they're thermistors, afterall). You can find the schematics in the Schematics folder. 
 
 Once you set the new pin definition, you can add a separate MOSFET module.** DO NOT cheap out on those**. A bad MOSFET when breaks down does so in the open position. Current will keep flowing to your bed, and even thermal runaway protection can't save you in that case. A PSU shutoff relay is reccommended (assuming you still have pins to control it).
-[TriangleLab](url)https://it.aliexpress.com/item/32855369632.html?spm=a2g0o.store_pc_allProduct.8148356.5.92d56277lYWOKD and [BigTreeTech](https://it.aliexpress.com/item/32827172643.html?spm=a2g0o.store_pc_allProduct.8148356.4.50a27d10rtKAvP) both have well-specced (on paper at least) 40A and 30A MOSFETs for a reasonable price.
+[TriangleLab](https://it.aliexpress.com/item/32855369632.html?spm=a2g0o.store_pc_allProduct.8148356.5.92d56277lYWOKD) and [BigTreeTech](https://it.aliexpress.com/item/32827172643.html?spm=a2g0o.store_pc_allProduct.8148356.4.50a27d10rtKAvP) both have well-specced (on paper at least) 40A and 30A MOSFETs for a reasonable price.
 
 Wiring for those is pretty straigthforward. HOT +/- goes to the heater (polarity doesn't matter), SIG+/- goes to the redefined pins for HE1, POWER+/- to the PSU.
 
