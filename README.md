@@ -241,11 +241,14 @@ This is only the basics. A properly set firmware has many other variales to be d
 Now,  if you either have a GT2560 v4.0 board without the connectors or another board (but still without the desired connectors), you can choose 3 paths:
 1. Buy another board. A BTT SKR 1.4/2.0, a BTT Octopus, an MKS Robin NANO V3, and so on.
 2. Buy and solder the missing components
-3. Re-purpose unused pins as HE0 nad T0 headers, and use external MOSFETs modules
+3. Re-purpose unused pins as HE0 and T0 headers, and use external MOSFETs modules
 
 Option 1 will get you back to Part 3.0. It's the most expensive but also easiest method. Go this way if you're not comfortable with soldering.
-Option 2 is a bit more complicated, and will differ form board to board as componets and traces change.
-Oprion 3 is also not straigthforward, and will require a janky workaround.
+Option 2 is a bit more complicated, and will differ form board to board as componets and traces change. I recommend it only for those who can both source the components and solder them.
+Option 3 is also not straigthforward, and will require a janky workaround.
 
 # Part 4.1: The apocalyptic scenario: soldering the missing components
 
+Usually, the non-populated traces belong to a MOSFETs, LEDs, a couple resitors, and a through-hole 2.54mm pitch headers for a JST XH-2.54 connector. 
+I'm positive the package of the FET is an SOT669, but i could be wrong. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, the V3.0 uses an PSMN7R0-30YL. I think they're the same, but I'm unable to verify this. Schematics are included in this repository for those who want them.
+Of course, as long as they're within specs, you can use other components. Verify also that the traces are actually connected to the MC. 
