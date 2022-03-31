@@ -30,6 +30,8 @@ A guide on how to install an E3D Chimera hotend on the Geeetech A10M, A20M, A30M
 
 [5.0: Calibrations]()
 
+[5.1: Slicer setup]()
+
 # Introduction
 
 I purchased my A10M for Christmas, with the intent of modding it to print dual materials at different temperatures (a thing quite hard on the stock model, as it has only one heating cartridge for both, forcing the temperature to fluctuate between the melting points of the 2 of them). I soon realized that the Cyclops-style hotend is not ideal if you’re printing with only one filament: melted material was flowing back through the other Bowden tube, the retraction was ineffective, oozing and stringing was unbearable. So, I decided that enough was enough.
@@ -181,7 +183,7 @@ Here's a photo mid-work:
 ![chimera mid assembly](chimera_assembled.jpg)
 
 And here's one with the Chimera mounted
-![Chimera finished]()
+![Chimera finished](chimera_mounted.jpg)
 
 You can see I'm using a printed (in silver) cable retainer. You can find that on the adapter's [Thingiverse page](https://www.thingiverse.com/thing:4795634).
 
@@ -332,3 +334,42 @@ Due to the significant changes we made, it's now important to run a set of calib
 4. Run a PID tuning for both extruders (separately).
 5. Run a full set of retraction, flow, temperature and linear advance. I always suggest [Teaching Tech's guide](https://teachingtechyt.github.io/calibration.html).
 
+# Part 5.1: Slicer setup
+
+First of all: Cura is better than any other slicer when it comes to dual extrusion. It migth not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (maybe in the future). PrusaSlicer (and SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura
+
+In the printer settings menu, set the number of extruders to 2. Do not enable _Apply extruder offset to Gcode_: we've already set it into Marlin, and an override migth create some conflicts. 
+
+We'll set the Extruder 1 offset to 0.0 for both X and Y. The extruder 2 offset will be 20.mm on X and 0.0 on Y. _Cooling fan number_ should be set to 0 if you use only one fan for both extruders.
+
+In terms of start Gcode, I use the following:
+```
+;GeeeTech A10M start script for DualEx
+G28 ;home
+G90 ;absolute positioning
+G92 E0 ; zero extruded length
+M420 S1; load bed mesh from slot 1
+G1 X0 Y0 Z0.8 E0 F1500 ;go to wait position
+M104 S[extruder0_temperature] T0 ; set temp for extruder 0 do not wait
+M104 S[extruder1_temperature] T1; set temp for extruder 1 do not wait
+M140 S[bed0_temperature] ; set temp for bed do not wait
+T0; enable extruder 1
+G92 E0 ; zero extruded length
+G1 Z0.8 F200 ;set extruder height
+G1 X220 Y0 E80 F500 ;purge line
+G92 E0 ; zero extruded length
+T1; enable extruder 2
+G92 E0 ; zero extruded length
+G1 X0 Y10 Z0.8 E0 F1500 ;travel to second purge line start
+G1 X220 Y10 E80 F500 ;purge line
+G92 E0 ; zero extruded length
+T0; switch back to T0 to avoid Fan not starting
+;end of start script
+```
+Modify it to your desire.
+
+Extruder start and end Gcode will be discussed later.
+
+Under the Dual Extrusion menu we'll se the _Nozzle Switch Retraction Speed_ to our current retraction speed (I use 40mm/s for PLA, but yours migth be different). _Nozzle Switch Retraction Distance_ should be set equal to the lenght of the heating zone. For a V6 block that's 16mm, plus 4mm circa of protuding nozzle. 18-20mm is good starting point.
+
+For now, this will be sufficient. More in-depth discussion are present in Part 6.0.
