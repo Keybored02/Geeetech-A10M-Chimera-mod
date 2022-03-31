@@ -129,7 +129,7 @@ A couple of additional considerations:
 In order to proceed with the mod, you'll have to open the hood and look at your board. If it has all the connectors installed, good. Keep on reading.
 If it doesn't, jump to Part 4.0
 
-First of all, a BOM of the parts (pricing for reference only):
+First of all, a BOM of the parts:
 [Chimera+ Kit](https://it.aliexpress.com/item/32907340102.html?spm=a2g0o.store_pc_allProduct.8148356.3.77b627c6nWPtjm) that includes:
                           - Chimera+ heatsink and couplers
                           - 2x Kraken (unofficial naming) heatbreaks
@@ -137,12 +137,24 @@ First of all, a BOM of the parts (pricing for reference only):
                           - 2x 16mm, 24V 40W V6 heating cartridges
                           - 2x V6 heatbreaks
                           - 2x V6 0.4mm nozzles
-                          - Not included, but recommended: 2x Silicon socks
+                          - 3010 24V fan
+                          - Not included, but recommended: - 2x Silicon socks
+                                                           - 5015 24V fan 
+                          - Additional hardware: - 3x M3 10mm screws
+                                                 - 1x 20mm M3 nut and bolt (to hold the part fan)
+                                                 - Zip ties
+                                                 - Printed adapter plate
+                                                 - Printed fan duct
 You can purchase it as an assembly ready kit or mix match different parts, but this are the essentials. As mentioned prevoiusly, it's part of the V6 ecosystem.
+You'll also have to print an adpater plate to mount to the carriage, and a fan duct
 
 Now that you have everything, let's start.
-- **Disassemble the X-axis carriage:** 
--
+
+- **Disassemble the X-axis carriage:** With the printer powered off and disconnected from the outlet, remove the fan shroud, disconnect the 2x6 Molex, remove the breakout board cover (two hex screws on the back of the carriage), and then unscrew the nuts that hold the wheels in place. Disconnect the heater cables, thermistor cables, and part cooling fan.
+- **Assemble the Chimera:** Follow the [instructions](https://e3d-online.zendesk.com/hc/en-us/articles/360016354698-Chimera-Air-cooled-Assembly-Edition-1-)
+- **Adapter mount:** I've designed a mount that is available on [Thingiverse](https://www.thingiverse.com/thing:4795634). You need 3x M3 10mm screws to screw in the Chimera, and you can reuse the factory screws to mount the plate to the carriage.
+- **Wiring and cable management:** This is not as hard as it seems. Decide which one is Extruder 1 (usually the one on the left), and wire its heater to HE0 and its sensors to T0. Again, use the board connectors. If you have them , crimping ferrules for the haeter's cables are a good idea to add. Polarity doesn't matter (there's not defined + or -). For Extruder 2 use HE1 and T1. Pass the cables trough the cable slots on adpater plate and the carriage. You can bundle the cables in the Molex connector's sleeve or zip-tie them on the exterior. Make sure thy're not strained or under tension.
+- **Fans:** I recommend using this new fan duct with a 5015 fan from [Thingiverse](https://www.thingiverse.com/thing:2175956/files). Th fan dcut is mounted on topo of the 3010 fan, using the included self-tapping screws. Be careful to tap in a straigth line. Reconnect the heatsink and part fans on the back of the board (follow the aforementioned diagram) and level the heigth of the fan duct.
                        
 
 
