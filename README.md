@@ -114,7 +114,11 @@ Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech onli
 
 ![GT2560 v4.0 populated](GT2560_V4.0_populated.jpg)
 
-This happens on other Geeetech boards too, across all models. 
+This happens on other Geeetech boards too, across all printers. 
+
+
+In order to proceed with the mod, you'll have to open the hood and look at your board. If it has all the connections ready, good. Keep on reading. 
+If it doesn't, jump to Part 4.0. It doesn't have to be a stock Geeetech board (as long as it meets the aforementioned requirements).
 
 # Part 2.1-bis: The breakout board
 
@@ -125,10 +129,6 @@ A couple of additional considerations:
 - **IMPORTANT:** The connector on the board is an alternative to the on-board connectors. It's wired in parallel to the HE0, HE1, T0, T1, Fan, BLtouch pins. In practical terms: you either use the connectors on the mainboard **OR** the ones on the breakout, because thy're the same thing for the microcontroller. Wiring two separate heaters, one to the HE0 connector on the breakout board and one to HE0 on the mainboard it's a big no-no. Same thing applies to the fans, thermistors, and BLtouch of course.
 
 # Part 3.0: The idyllic scenario: wiring of a populated board
-
-In order to proceed with the mod, you'll have to open the hood and look at your board. If it has all the connectors installed, good. Keep on reading. 
-If it doesn't, jump to Part 4.0. It doesn't have to be astock Geeetech board (as long as it meets the requirements).
-
 
 First of all, a BOM of the parts.
 [Chimera+ Kit](https://it.aliexpress.com/item/32907340102.html?spm=a2g0o.store_pc_allProduct.8148356.3.77b627c6nWPtjm) that includes:
@@ -234,7 +234,7 @@ Don't forget to define
 ```
 to avoid thermal runaway.
 
-This is only the basics. A properly set firmware has many other variales to be defined. Jump now to Part 5.0.
+This only covers our new extruder setup. To compile Marlin from zero you'll need to define all the other variables too.
 
 # Part 4.0: The apocalyptic scenario: unpopulated or different board
 
@@ -247,14 +247,49 @@ Option 0 is the most expensive but also the easiest method. Go this way if you'r
 Option 1 is a bit more complicated, and will differ form board to board as componets and traces change. I recommend it only for those who can both source the components and solder them.
 Option 2 is also not straigthforward, and will require a janky workaround. It's the less favorable of the 3.
 
+**DISCLAIMER**: the following paragraphs should be considered as an informative piece, and not a step-by step guide. Due to the different revision in existence, details and schematics may vary. Operating with electronics componets is not recommended unless you know where you're putting your hands. The author takes no responsibilty for damges to people and objects. Proceed at your own risk.
+
 # Part 4.1: Option 1: soldering the missing components
 
 As far as I'm aware, only the V4.0 and later (4.0B, 4.1) boards suffer from partially populated traces. V3.0 should be spared (I included the schematics anyway).
 Usually, the non-populated traces belong to a MOSFETs, red LEDs, a couple resitors (100kOhms and 2.7kOhms), a diode, and a through-hole 2.54mm pitch headers for a JST XH-2.54 connector. 
-I'm positive the package of the FET is an SOT669. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, while the V3.0 uses specifically the PSMN7R0-30YL. I think they're the same and are just mislabled in GT2560_V4.0_SCH.pdf, but I'm unable to verify this. The diodes are 1N5819 (DO-214AC or SOD-123F package, unable to verify). Schematics are included in this repository for those who want them. It should be as easy as soldering evrything and then just plugging evrything in. Pin definition stays the same. Of course, as long as they're within specs, you can use other components. Verify also that the traces are actually connected to the MC.
+I'm positive the package of the FET is an SOT669. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, while the V3.0 uses specifically the PSMN7R0-30YL. I think they're the same and are just mislabled in GT2560_V4.0_SCH.pdf, but I'm unable to verify this. The diodes are 1N5819 (DO-214AC or SOD-123F package, unable to verify). Schematics are included in this repository for those who want them. It should be as easy as soldering everythingn in. Pin definition stays the same. Of course, as long as they're within (or above) specs, you can use other components. Verify also that the traces are actually connected to the MCU and that ground is actually grounded.
 
-Follow part 3.0 and 3.1 for firmware setup.
+Follow Part 3.0 and 3.1 for wiring and firmware setup.
 
 # Part 4.2: Option 2: Repurposing existing pins
 
-If you don't feel comfortable soldering the missing components
+Frankly, it's not a great idea to follow this path. It's not that cheaper, but most importantly it's a bad workaround.
+
+The main idea here is to re-assign unused pins to the HE1 and T1 headers. The exact pins to use differ from user to user. For example, they could be
+
+- from the free driver socket (plenty there)
+- from the endstops
+- from the Bltouch connector
+
+Of course, it's not as straigthforward as plugging the connector in another spot and changing pin definition in firmware. You'll have to add a resistor and a capacitor to the mix (they're thermistors, afterall). You can find the schematics in the Schematics folder. 
+
+Once you set the new pin definition, you can add a separate MOSFET module.** DO NOT cheap out on those**. A bad MOSFET when breaks down does so in the open position. Current will keep flowing to your bed, and even thermal runaway protection can't save you in that case. A PSU shutoff relay is reccommended (assuming you still have pins to control it).
+[TriangleLab](url)https://it.aliexpress.com/item/32855369632.html?spm=a2g0o.store_pc_allProduct.8148356.5.92d56277lYWOKD and [BigTreeTech](https://it.aliexpress.com/item/32827172643.html?spm=a2g0o.store_pc_allProduct.8148356.4.50a27d10rtKAvP) both have well-specced (on paper at least) 40A and 30A MOSFETs for a reasonable price.
+
+Wiring for those is pretty straigthforward. HOT +/- goes to the heater (polarity doesn't matter), SIG+/- goes to the redefined pins for HE1, POWER+/- to the PSU.
+
+Once the wiring for the new thermistor and MOSFET is done, you can rassign the corresposnding pins.
+
+Let's say I'm not using the 3rd filament runout sensor and the enable pin from the E2 stepper driver.
+
+Once I found my board in `Marlin\src\core\boards.h`, I can go to the respective file in `Marlin\src\pins`.
+
+I'm gonna comment out (or delete) the definitions I'm changing
+```
+//#define E2_ENABLE_PIN                       41
+//#define FIL_RUNOUT3_PIN                     54
+```
+and instead I'm gonna add the lines
+```
+#define TEMP_1_PIN                            41 
+#define HEATER_1_PIN                          54
+```
+with the pins of your choice.
+
+You can now follow the instructions in Part 3.1 to complete the extruder setup.
