@@ -96,6 +96,9 @@ A couple of considerations on the Trianglelab's clone: it's machined precisely, 
 
 If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? The answer is: yes, at one condition. Your board must come with an header for a second thermistor and heating cartiridge. What follows is a rant on the status of Geeetech boards.
 
-![GT2560 v4.0]()
+![GT2560 v4.0](GT2560_v4.0-100.jpg)
 
-Notice anything wrong? The traces for the Heater1 and Haeter2 are not populkated, while Heater0 has only the MOSFET placed
+Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech store. Notice anything wrong? The traces for the Heater 1 (HE1) and Heater 2 (HE2) are not populated, while Heater 0 has only the MOSFET, withouth the connector. If they already have the traces layed, why not using them? I'm sure that is not an unbearable expense. You wanna jnow how I know that? Because on previuos models, manufactured in 2019 and earlier (like the one I have), all traces are populated.
+
+![GT2560 v4.0 populated]()
+
