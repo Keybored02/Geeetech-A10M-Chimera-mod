@@ -20,6 +20,16 @@ A guide on how to install an E3D Chimera hotend on the Geeetech A10M, A20M, A30M
 
 [3.0: The idyllic scenario: wiring of a populated board]()
 
+[3.1: Firmware for a populated board]()
+
+[4.0: The apocalyptic scenario: unpopulated or different board]()
+
+[4.1: Option 1: soldering the missing components]()
+
+[4.2: Option 2: Repurposing existing pins]()
+
+[5.0: Calibrations]()
+
 # Introduction
 
 I purchased my A10M for Christmas, with the intent of modding it to print dual materials at different temperatures (a thing quite hard on the stock model, as it has only one heating cartridge for both, forcing the tempertaure to fluctuate between the melting points of the 2 of them). I soon realized that the Cyclops-style hotend is not ideal if you’re printing with only one filament: melted material was flowing back through the other bowden tube, retraction was uneffective, oozing and stringing was unbereable. So, I decided that enough was enough.
@@ -239,12 +249,15 @@ This only covers our new extruder setup. To compile Marlin from zero you'll need
 # Part 4.0: The apocalyptic scenario: unpopulated or different board
 
 Now,  if you either have a GT2560 v4.0 board without the connectors or another board (but still without the desired connectors), you can choose 3 paths:
+
 0. Buy another board. A BTT SKR 1.4/2.0, a BTT Octopus, an MKS Robin NANO V3, and so on.
 1. Buy and solder the missing components
 2. Re-purpose unused pins as HE0 and T0 headers, and use external MOSFETs modules
 
 Option 0 is the most expensive but also the easiest method. Go this way if you're not comfortable with soldering. You can follow Part 3.0 and 3.1 (with the due diligence of changing baord definition).
+
 Option 1 is a bit more complicated, and will differ form board to board as componets and traces change. I recommend it only for those who can both source the components and solder them.
+
 Option 2 is also not straigthforward, and will require a janky workaround. It's the less favorable of the 3.
 
 **DISCLAIMER**: the following paragraphs should be considered as an informative piece, and not a step-by step guide. Due to the different revision in existence, details and schematics may vary. Operating with electronics componets is not recommended unless you know where you're putting your hands. The author takes no responsibilty for damges to people and objects. Proceed at your own risk.
@@ -253,7 +266,9 @@ Option 2 is also not straigthforward, and will require a janky workaround. It's 
 
 As far as I'm aware, only the V4.0 and later (4.0B, 4.1) boards suffer from partially populated traces. V3.0 should be spared (I included the schematics anyway).
 Usually, the non-populated traces belong to a MOSFETs, red LEDs, a couple resitors (100kOhms and 2.7kOhms), a diode, and a through-hole 2.54mm pitch headers for a JST XH-2.54 connector. 
+
 I'm positive the package of the FET is an SOT669. By default, on the V4.0 is installed a PSMN7R0-30 series MOSFET, while the V3.0 uses specifically the PSMN7R0-30YL. I think they're the same and are just mislabled in GT2560_V4.0_SCH.pdf, but I'm unable to verify this. 
+
 The diodes are 1N5819 (DO-214AC or SOD-123F package, unable to verify). Schematics are included in this repository for those who want them. 
 It should be as easy as soldering everythingn in. Pin definition stays the same. Of course, as long as they're within (or above) specs, you can use other components. Verify also that the traces are actually connected to the MCU and that ground is actually grounded. Asa reference, here's a brand new GT2560 V4.0, fully populated.
 ![fully populated board](populated_board_for_comparison.jpg)
