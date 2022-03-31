@@ -176,8 +176,14 @@ Now that you have everything, let's start.
 
 You can, of course, use different mounts and fan ducts. It shouldn't impact the wiring. 
 
-Here's a photo mid-work
+Here's a photo mid-work:
+
 ![chimera mid assembly](chimera_assembled.jpg)
+
+And here's one with the Chimera mounted
+![Chimera finished]()
+
+You can see I'm using a printed (in silver) cable retainer. You can find that on the adapter's [Thingiverse page](https://www.thingiverse.com/thing:4795634).
 
 # Part 3.1: Firmware for a populated board
 
@@ -324,5 +330,5 @@ Due to the significant changes we made, it's now important to run a set of calib
 2. Adjust the Zmin end-stop or the BLtouch mount to avoid crushing the nozzles into the bed.
 3. Set the Z probe-to-nozzle offset using nozzle 1 as a reference.
 4. Run a PID tuning for both extruders (separately).
-5. Run a full set of retraction, flow, temperature and linear advance.
+5. Run a full set of retraction, flow, temperature and linear advance. I always suggest [Teaching Tech's guide](https://teachingtechyt.github.io/calibration.html).
 
