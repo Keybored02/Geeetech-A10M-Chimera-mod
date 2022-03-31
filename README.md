@@ -83,5 +83,19 @@ Now that you have downgraded your A10M to an A10, lets' fix a couple of things:
 3. PID tuning. Since you've changed the thermal configuration of the hotend, a PID tuning could be helpful if you are seing the temp readings fluctuate. Keep in mind that the thermistor is pretty inaccurate....[Video](https://www.youtube.com/watch?v=h9Rdid-T-Gw)
 4. Calibration tests and benches. Run everything again: retraction and stringing tests, linear advance calibration etc.
 
+# Part 2.0: A 2-in-2 mod
 
-Th 2-in-2 Chimera mod will arrive soon. Stay tuned.
+Color mixing surely it's cool, but it's also a limiting factor that prevents the printer from getting consistent, single-extruder results. While going 1-in-1 as explained in Part 1.2 solves the issue, it's more of a downgrade than an improvement. You paid for two extruders, you have to use both of them!.
+You can get a Dua Extruder set up quite easily with the help of the E3D's Chimera+, which is basically a heatsink with two hollowings for two separate haetbreaks. It's integrated in the V6 ecosystem, so you can use the block and nozzles from a normal V6 hot end (heatbreaks are different). You can get the Chimera 
+* [E3D Original](https://e3d-online.com/products/chimera)
+* [Trianglelab clone](https://it.aliexpress.com/item/32908238691.html?spm=a2g0o.store_pc_allProduct.8148356.9.77b627c6nWPtjm)
+
+A couple of considerations on the Trianglelab's clone: it's machined precisely, and I've had no problems adapting it to the Chimera+ CAD designs. Avoid extremely cheap off-brand clones (we'll talk about this later).
+
+# Part 2.1: The board is the limit
+
+If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? The answer is: yes, at one condition. Your board must come with an header for a second thermistor and heating cartiridge. What follows is a rant on the status of Geeetech boards.
+
+![GT2560 v4.0]()
+
+Notice anything wrong? The traces for the Heater1 and Haeter2 are not populkated, while Heater0 has only the MOSFET placed
