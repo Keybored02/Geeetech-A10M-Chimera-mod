@@ -236,10 +236,16 @@ to avoid thermal runaway.
 
 This is only the basics. A properly set firmware has many other variales to be defined. Jump now to Part 5.0.
 
-# Part 3.1: The apocalyptic scenario: wiring for an unpopulated board
+# Part 4.0: The apocalyptic scenario: wiring for an unpopulated board
 
 Now,  if you either have a GT2560 v4.0 board without the connectors or another board (but still without the desired connectors), you can choose 3 paths:
 1. Buy another board. A BTT SKR 1.4/2.0, a BTT Octopus, an MKS Robin NANO V3, and so on.
 2. Buy and solder the missing components
 3. Re-purpose unused pins as HE0 nad T0 headers, and use external MOSFETs modules
+
+Option 1 will get you back to Part 3.0. It's the most expensive but also easiest method. Go this way if you're not comfortable with soldering.
+Option 2 is a bit more complicated, and will differ form board to board as componets and traces change.
+Oprion 3 is also not straigthforward, and will require a janky workaround.
+
+# Part 4.1: The apocalyptic scenario: soldering the missing components
 
