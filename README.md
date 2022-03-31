@@ -98,7 +98,7 @@ If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? 
 
 ![GT2560 v4.0](GT2560_v4.0-100.jpg)
 
-Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech store. Notice anything wrong? The traces for the Heater 1 (HE1) and Heater 2 (HE2) are not populated, while Heater 0 has only the MOSFET, withouth the connector. With this configuration, there's space only for one heater (which is already in use). If they already have the traces layed, why not using them? I'm sure that is not an unbearable expense to add a few connectors and SMD MOSFETs. You wanna know how I know that? Because on previuos models, manufactured in 2019 and earlier (like the one I have), all traces are populated.
+Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech store. Notice anything wrong? The traces for the Heater 1 (HE1) and Heater 2 (HE2) are not populated, while Heater 0 has only the MOSFET, withouth the connector. With this configuration, there's space only for one heater (which is already in use). If they already have the traces layed, why not using them? I'm sure that is not an unbearable expense to add a few connectors and SMD MOSFETs. You wanna know how I know that? Because on previous models, manufactured in 2019 and earlier (like the one I have), all traces are populated.
 
-![GT2560 v4.0 populated](GT2560 V4.0.jpg)
+![GT2560 v4.0 populated](GT2560_V4.0_populated.jpg)
 
