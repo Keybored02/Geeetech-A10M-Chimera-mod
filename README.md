@@ -218,7 +218,7 @@ Second of all, check that the pins for the second thermistor and heater are defi
 #define FAN1_PIN                               8
 #define FAN2_PIN                               7
 ```
-If the pins for a second heater are not assigned, chances are they're not even present, refer to the manufacturer's schematic, or consult Part 4.2.
+If the pins for a second heater are not assigned, chances are they're not even present. Refer to the manufacturer's schematics, or consult Part 4.2.
 
 Uncomment
 
@@ -370,4 +370,8 @@ Modify it to your desire. Extruder start and end Gcode will be discussed later.
 
 Under the Dual Extrusion menu we'll se the _Nozzle Switch Retraction Speed_ to our current retraction speed (I use 40mm/s for PLA, but yours migth be different). _Nozzle Switch Retraction Distance_ should be set equal to the lenght of the heating zone. For a V6 block that's 16mm, plus 4mm circa of protuding nozzle. 18-20mm is good starting point.
 
-For now, this will be sufficient. More in-depth discussions are present in Part 6.0.
+For now, this will be sufficient. More in-depth discussions are present in Part 5.2.
+
+# Part 5.2: Printing considerations
+
+
