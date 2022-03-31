@@ -98,7 +98,12 @@ If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? 
 
 ![GT2560 v4.0](GT2560_v4.0-100.jpg)
 
-Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech store. Notice anything wrong? The traces for the Heater 1 (HE1) and Heater 2 (HE2) are not populated, while Heater 0 has only the MOSFET, withouth the connector. With this configuration, there's space only for one heater (which is already in use). If they already have the traces layed, why not using them? I'm sure that is not an unbearable expense to add a few connectors and SMD MOSFETs. You wanna know how I know that? Because on previous models, manufactured in 2019 and earlier (like the one I have), all traces are populated.
+Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech store. Notice anything wrong? The traces for the Heater 1 (HE1) and Heater 2 (HE2) are not populated, while Heater 0 has only the MOSFET, withouth the connector. With this configuration, there's space only for one heater (which is already in use). If they already have the traces layed, why not using them? I'm sure that is not an unbearable expense to add a few connectors and SMD MOSFETs. You wanna know how I know that? Because on previous models, manufactured in 2019 and earlier (like the one I have), all traces are populated (image pulled from the [official forum](https://www.geeetech.com/forum/viewtopic.php?f=18&t=69799&start=30)).
 
 ![GT2560 v4.0 populated](GT2560_V4.0_populated.jpg)
+
+This happens on other Geeetech boards too, across all models. 
+A couple of additional considerations:
+- The MOLEX connector that links the mainboard to the breakout board on the back of the X carriage is a total mess. Albeit showing 4 labeled haeter headers, they're not actaully separated and in parallel, bur are wired in serially. In other words, it's just one line split across 4 ports. This puts a tremendous load on both ends in case 4 heaters are connected. Fire safety is a joke, isn't it? ![Breakout Board]()
+- What jaust said applies to fan and temp sensors too: it's one line, duplicated to two headers. If you run the math, it doesn't add up: the breakout board's MOLEX is 2x6, so 12 pins. 6 less than what the mainboard has. Wired in are 2 pins for the HE0, 2 for the temp sensor, 2 for a constant fan and 2 for the PWM fan, 4 for the BLTouch probe (one common ground). Total = 12 pins. There's no space for other lines.
 
