@@ -122,7 +122,7 @@ A couple of considerations on the Trianglelab's clone: it's machined precisely, 
 
 # Part 2.1: The board is the limit
 
-If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? The answer is: yes, under one condition. Your board must come with a header for a second thermistor and heating cartridge. What follows is a rant on the status of Geeetech boards.
+If you're asking yourself: can I adapt my A10M/A20M/A30M/any printer to DualEx? The answer is: yes, under two conditions. Your board must come with a header for a second thermistor and a second heating cartridge, and your PSU must be able to whitstand the extra 40W peak power consumption added by the second heater. If you can check both boxes, great. What follows is a rapid rant on the status of Geeetech boards.
 
 ![GT2560 v4.0](GT2560_v4.0-100.jpg)
 
@@ -434,6 +434,14 @@ Additional important factors are addressed in the F.A.Q.
 - **Q: I want a specific tool to start first, how can I do that?**
   
     **A:** Assign a brim, a skirt, a raft to it. This overrides the hierarchy and will make it go first.
+    
+- **Q: Why do I have two grey areas on my buildplate in Cura?**
+
+  **A:** The tradeoff of having two nozzles is the print area reduced by the X offset on both sides. Think about it: if the extruders need to reach the same points, those point must be within a certain range. Makes sense?
+  
+- **Q: My two merged parts have some issues, and the Gcode is full of missing parts.**
+
+  **A:** You can try to solve merging an union issues with the per-model settings tab. If it's not what you were looking for, take a look at the [Mesh fixes settings](https://support.ultimaker.com/hc/en-us/articles/360012614159-Mesh-fixes-settings).
 
 - **Q: **Do I need two separate part cooling fans?****
  
@@ -453,11 +461,15 @@ Additional important factors are addressed in the F.A.Q.
 
 - **Q: Can I print with every material combination I want?**
   
-    **A:** No. Certain material combos adhere well together, others don't adhere at all. Depending on what you're trying to achieve you need to select them carefully.       For instance, if PLA adheres poorly to PETG, that makes it a great support and a terrible infill material to use in combination with PETG. The following table         acts as a reference (pulled from this [support page](https://support.ultimaker.com/hc/en-us/articles/360011461000-Ultimaker-3-Material-compatibility)):
+  **A:** No. Certain material combos adhere well together, others don't adhere at all. Depending on what you're trying to achieve you need to select them carefully.       For instance, if PLA adheres poorly to PETG, that makes it a great support and a terrible infill material to use in combination with PETG. The following table         acts as a reference (pulled from this [support page](https://support.ultimaker.com/hc/en-us/articles/360011461000-Ultimaker-3-Material-compatibility)):
     
     ![material compatibility Ultimaker](materials_compatibility_updated.png)
     
    Generally speaking, it's not recommended to use two filaments with very different printing temperatures. The hotter one will soften the other, leading to support failure, parts blending, and overall poor print quality. Try to combine materials with similar T<sub>glass</sub> values. For example, ABS and HIPS are a            great combo because they don't soften each other. ABS+PVA can be troublesome, depending on the quality of the PVA filament. Nylon and PC need specific high-temp support filaments, like BVOH, Helios Support, DPA-100, Ionic Hi-Temp Hybrid, Lay Cloud PVA, and High-T-Lay PVA.
+   
+- **Q: What if bed temperatures for the two filaments area really far apart?**
+
+  **A:** Make a compromise. Something barely hot enough for the more demanding filament to adhere. The type of buildplate used is also a factor.
     
 - **Q: What about dissolving filament?**
 
@@ -466,6 +478,10 @@ Additional important factors are addressed in the F.A.Q.
 - **Q: I'm always getting a clog while using PVA.** 
  
   **A:** Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should help. You can use it as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
+  
+- **Q: can I used two different nozzle sizes?**
+
+  **A:** Yes, you can. Make sure to set them correctly in the Machine settings, and level the nozzles.
   
 - **Q: My prints are coming out shifted/misaligned.**
 
