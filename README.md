@@ -32,11 +32,15 @@ A guide on how to install an E3D Chimera hotend on the Geeetech A10M, A20M, A30M
 
 [5.1: Slicer setup]()
 
+[5.2: Printing considerations]()
+
+[5.3: F.A.Q and troubleshooting]()
+
 # Introduction
 
-I purchased my A10M for Christmas, with the intent of modding it to print dual materials at different temperatures (a thing quite hard on the stock model, as it has only one heating cartridge for both, forcing the temperature to fluctuate between the melting points of the 2 of them). I soon realized that the Cyclops-style hotend is not ideal if you’re printing with only one filament: melted material was flowing back through the other Bowden tube, the retraction was ineffective, oozing and stringing was unbearable. So, I decided that enough was enough.
+I purchased my A10M with the intent of modding it to print dual materials at different temperatures (a thing quite hard on the stock model, as it has only one heating cartridge for both, forcing the temperature to fluctuate between the melting points of the 2 of them). I soon realized that the Cyclops-style hotend is not ideal if you’re printing with only one filament: melted material was flowing back through the other Bowden tube, the retraction was ineffective, oozing and stringing was unbearable. So, I decided that enough was enough.
 I had two objectives:
-1. Getting the printer to print reliably (spoiler, I can't)
+1. Getting it to print reliably (spoiler ahead: you need to md it to reach good results)
 2. Upgrade to a 2-in-2 Chimera hotend (for cheap)
 
 
@@ -46,12 +50,12 @@ Let's talk about the "original" 2-in-1 hotend. Inspired by the E3D Cyclops, it's
 
 ![Hotend Comparison](hotend_comparison.jpg)
 
-Geeetech implemented a few flaws in their design. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heat block that supposedly prevent the molten filament from climbing up the other throat. Not only they do not work (I still got a clogged Bowden), but they even limit retraction. In my experience, removing them changes very little. **NOTE: Factory firmware limits the retraction to 25mm/s, no matter the slicer's settings**
+Geeetech implemented a few flaws in their design. First of all, anti-backflow disks. Tiny pieces of metal located between the heatbreak and the heat block that supposedly prevent the molten filament from climbing up the other throat. Not only they do not work (I still got a clogged Bowden), but they limit retraction. In my experience, removing them changes very little, as the true culprit is another. **NOTE: Factory firmware limits the retraction to 25mm/s, no matter the slicer's settings**
 
 ![disks](disks_closeup.jpg) ![disks](disks_position_1.jpg)
 
 
-The other big issue is the amount of glue that holds all the screws on the heat block and the heatbreaks themselves. To unscrew them, you have to heat them at around 450°C with a heat gun. Otherwise, you'll just dent them (as shown in the image).
+Due to the amount of glue that holds all the screws on the heat block and the heatbreaks, disassembly is not easy. You have to heat them at around 450°C with a heat gun. Otherwise, you'll just dent them (as shown in the image). Removing the backflow disks may or may not help. My tests were inconclusive.
 
 Now, let's talk about the flaws that are not Geeetech's fault. The 2-in-1 Cyclops (even the original one) hot ends are not designed to print with a single filament, but always with two. If you're experiencing unworldly oozing and stringing with only one filament, there's not much you can do. The following diagram explains it (it's theoretical, not checked or supported by anyone other than me):
 
@@ -67,12 +71,12 @@ Although this is pretty much unfixable (as it is a structural flaw), we can stil
 
 2. Sticking a piece of filament into the unused heatbreak. Make sure that the printing temperature of this one is substantially higher than the one of the material you'll be printing with.
 
-3. Giving up color mixing (explained further later).
+3. Giving up color mixing.
 
 
 # Part 1.2: A 1-in-1 mod
 
-The solution is a 1-in-1 or 2-in-2 mod. That's it. The design is flawed? Change the design.
+The most effective solution is a 1-in-1 or 2-in-2 mod. That's it. The design is flawed? Change the design.
 
 Let's start from the easiest one, the 1-in-1. Assuming that you already have the 2-in-1 hotend, what you need is a V6 heat block:
 * [Original V6 Heatblock (incompatible with the stock thermistor)](https://e3d-online.com/products/v6-heaterblock-for-sensor-cartridges)
@@ -86,22 +90,22 @@ Since you are already at it, why not upgrade it to a hardened steel one?
 
 Now that you have all you need, you can uninstall the 2-in-1 following [this guide](https://github.com/caesar1111/Geeetech-A10M-HotEnd-Maintenance/blob/master/A10M_HotEnd_Maintenance.md). The assembly of the heatbreak-heat block(V6)-cartridge-thermistor is straightforward, and I won't cover it here. What I will cover instead is the heatsink placement:
 
-* dual heatsink (silver): use only one heatsink, insert the previously assembled block, align the indentation, and screw in the heatbreak. Install the fans on the two sides. Screw the heatsink to the cage using the central holes (as shown in the picture).
+* Dual heatsink (silver): use only one heatsink, insert the previously assembled block, align the indentation, and screw in the heatbreak. Install the fans on the two sides. Screw the heatsink to the cage using the central holes (as shown in the picture).
 
 ![Silver Heatsink](silver_heatsink_placement.jpg)
 
-* Single heatsink (black): to fit in the cage, you need to remove one of the two metal shields at the bottom. Assemble the block, screw the heatbreak, mount only one fan above the remaining metal shield. Screw the heatsink to the cage using the central holes (as shown in the picture). You can attach the second fan externally using some zip ties. I don't recommend leaving the entire work to only one fan, since the thermal mass is considerable and the flow would cover only one side.
+* Single heatsink (black): to fit in the cage, you need to remove one of the two metal heatshields at the bottom. Assemble the block, screw the heatbreak, mount only one fan above the remaining metal shield. Screw the heatsink to the cage using the central holes (as shown in the picture). You can attach the second fan externally using some zip ties. I don't recommend leaving the entire work to only one fan, since the thermal mass is considerable and the flow would cover only one side.
 
 ![Black Heatsink](black_heatsink_placement.jpg)
 
 The result should look similar to an [A10 hotend](https://www.geeetech.com/geeetech-a10-a30-a30-pro-a20-3d-printer-24v-printing-head-p-1041.html).
 
-Now that you have downgraded your A10M to an A10, lets' fix a couple of things: 
+Now that you have downgraded your A10M to an A10, let's recalibrate it: 
 
 1. Level the bed.
 2. Flash Marlin 2.0.x. You can follow [this video](https://www.youtube.com/watch?v=J14uJEd4XLU), but there are also many others that you can find. Besides all the cool new features, you'll also get the ability to change your retraction settings. The 1-in-1 mod doesn't require specific changes. If you already have Marlin 2.0 on your board, no re-flash is needed.
 3. PID tuning. Since you've changed the thermal configuration of the hotend, a PID tuning could be helpful if you are seeing the temp readings fluctuate. Keep in mind that the thermistor is pretty inaccurate...[Video](https://www.youtube.com/watch?v=h9Rdid-T-Gw)
-4. Calibration tests and benches. Run everything again: retraction and stringing tests, linear advance calibration, etc.
+4. Calibration tests. Run everything again: retraction and stringing tests, linear advance calibration, etc.
 
 # Part 2.0: A 2-in-2 mod
 
@@ -127,7 +131,6 @@ Up is a GT2560 v4.0 board used in the latest A10Ms and sold on the Geeetech onli
 ![GT2560 v4.0 populated](GT2560_V4.0_populated.jpg)
 
 This happens on other Geeetech boards too, across all printers. 
-
 
 To proceed with the mod, you'll have to open the hood and look at your board. If it has all the connections ready, good. Keep on reading. 
 If it doesn't, jump to Part 4.0. It doesn't have to be a stock Geeetech board (as long as it meets the aforementioned requirements).
@@ -422,7 +425,7 @@ Additional important factors are adressed in the F.A.Q.
 
 - **Q: I'm always getting a clog while using PVA.** 
  
-  A: Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should help.
+  A: Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should help. You can use as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
 
 - **Q: **Do I need two separate part cooling fans?****
  
@@ -439,7 +442,9 @@ Additional important factors are adressed in the F.A.Q.
 
 - **Q: Can I print with every material combination I want?**
   
-    A: No. Certain material combos adhere well togheter, others don't adhere at all. Depending on what you're trying to achieve you need to select them scarefully. For instance, if PLA adheres poorly to PETG, that makes it a great support material and a terrible infill material to use in combination with PETG.
+    A: No. Certain material combos adhere well togheter, others don't adhere at all. Depending on what you're trying to achieve you need to select them scarefully. For instance, if PLA adheres poorly to PETG, that makes it a great support material and a terrible infill material to use in combination with PETG. You can use the following table as a reference (pulled from this [support page](https://support.ultimaker.com/hc/en-us/articles/360011461000-Ultimaker-3-Material-compatibility)):
+    
+    ![materila compatibility Ultimaker](Material-compatibility-UM3-v2.png)
 
 - **Q: Is the Ooze shield the same as a Draft shield?**
   
