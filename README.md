@@ -422,15 +422,22 @@ Additional important factors are adressed in the F.A.Q.
 - **Q: Do I really need such an high Toolchange Retraction?**
  
   A: Assuming you already set Linear Advance, you can lower it by a lot. Turning it off completely is not recommended.
+  
+  - **Q: Is the Ooze shield the same as a Draft shield?**
+  
+    A: No: the ooze shield is designed to have the nozzles rubbing into it. It's also built alternating the two tools.
 
-- **Q: I'm always getting a clog while using PVA.** 
- 
-  A: Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should help. You can use as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
+- **Q: Do I need a Prime tower?**
+  
+    A: No. That is meant to used in a 2-in-1 extruder, where you need to purge wehn transitioning from a material to another in order to avoid material blends. It         doens't help in our case. An ooze shield is way more effective.
+    
+- **Q: I want a specific tool to start first, how can I do that?**
+  
+    A: Assign a brim, a skirt, a raft to it. This overrides the hierarchy and will make it go first.
 
 - **Q: **Do I need two separate part cooling fans?****
  
   A: No, and they are actually detrimental to the overall cooling performance. Since only one extruder is operating at a time, the slicer sets the fan speed according to which tool is enabled. At toolchange, the fan will follow the speed set for the second tool, being it higher, lower, or the same. Dual fans cool only one side of the nozzle. A single fan with a dual fanduct can do both sides at the same time (albeit with a lower flow).
-
 
 - **Q: **My fan doesn't start, but it's working perfectly otherwise.****
  
@@ -439,23 +446,24 @@ Additional important factors are adressed in the F.A.Q.
 - **Q: **Does the fact that the two blocks are close to one another affect the temperatures?****
  
   A: Yes and no. If you print with only one extruder, during printing you'll notice the second extruder rising over T<sub>ambient</sub> by a few degrees. Silicon socks help tremendoulsy with this issue. The nominal power of the heating cartridge is believed to have an influence too. I can say that with 40W cartridges operating at 180C there's no cross-contamination. PID does its job (poorly as always, but still). If the two print temps differ a lot (e.g. PLA and Nylon), you migth want to set the lowest one even lower to compensate. In general, temperature stability ins't an issue.
+  
+- **Q: The heatsink on the Chimera seems a bit underspecced. Will it provide sufficient cooling and avoid heat surges?**
+
+  A: Tough question. Short answer: it will perform fine for PLA and most lower-temp filaments. It will not be exchange heat with the ambient fast enough at higher       tempertaures (280+C). A temporary fix would be to use a 3020 fan, and adding smaller heatsinks on the sides to encrease the surface area. The most effective solution   for this is watercooling it with a Chimera Aqua, available both on [E3D's site](https://e3d-online.com/products/chimera) and from [Trianglelab](https://it.aliexpress.com/item/32866664544.html?spm=a2g0o.store_pc_allProduct.8148356.1.43ab27c6O61DmY) or [Mellow Store](https://it.aliexpress.com/item/32699836914.html?spm=a2g0o.store_pc_allProduct.8148356.8.4e6d791f4pitm1). A [water cooling kit](https://it.aliexpress.com/item/32850217541.html?spm=a2g0o.store_pc_allProduct.8148356.2.62c761f1yciGhX) is required.
 
 - **Q: Can I print with every material combination I want?**
   
-    A: No. Certain material combos adhere well togheter, others don't adhere at all. Depending on what you're trying to achieve you need to select them scarefully. For instance, if PLA adheres poorly to PETG, that makes it a great support material and a terrible infill material to use in combination with PETG. You can use the following table as a reference (pulled from this [support page](https://support.ultimaker.com/hc/en-us/articles/360011461000-Ultimaker-3-Material-compatibility)):
+   A: No. Certain material combos adhere well togheter, others don't adhere at all. Depending on what you're trying to achieve you need to select them carefully. For      instance, if PLA adheres poorly to PETG, that makes it a great support and a terrible infill material to use in combination with PETG. The following table acts as      a reference (pulled from this [support page](https://support.ultimaker.com/hc/en-us/articles/360011461000-Ultimaker-3-Material-compatibility)):
     
-    ![materila compatibility Ultimaker](Material-compatibility-UM3-v2.png)
+    ![material compatibility Ultimaker](materials_compatibility_updated.png)
+    
+   Generally speaking, it's not recommended to use two filaments with very different printing temperatures. The hotter one will soften the other, leading to support      failure, parts blending, and an overall poor print quality. Try to combine materials with similar T<sub>glass</sub> values. For example, ABS and HIPS are a            great combo because they don't soften each other. ABS+PVA can be troublesome, depending on the quality of the PVA filament. Nylon and PC need specific high-temp        support filaments, like BVOH, Helios Support, DPA-100, Ionic Hi-Temp Hybrid, Lay Cloud PVA, High-T-Lay PVA.
+    
+- **Q: What about dissolving filament?**
 
-- **Q: Is the Ooze shield the same as a Draft shield?**
-  
-   A: No: the ooze shield is designed to have the nozzles rubbing into it. It's also built alternating the two tools.
-
-- **Q: I want a specific tool to start first, how can I do that?**
-  
-    A: Assign a brim, a skirt, a raft to it. This overrides the hierarchy and will make it go first.
-
-- **Q: Do I need a Prime tower?**
-  
-    A: No. That is meant to used in a 2-in-1 extruder, where you need to purge wehn transitioning from a material to another in order to avoid material blends. It doens't help in our case. An ooze shield is way more effective
-  
+    A: Many materials can be broken down with specific solvents. HIPS is dissolved in a D-Limonene and water solution, ABS is broken down by Acetone, PVA by water.         At the same time, other materials aren't as affected by those solvents, and can endure a bath in a solvent solution. Keep in mind that due to the long exposure         times (PVA and HIPS take hours to completely dissolve) the part made of the "solvent-resistant" filament is also exposed to the agent. This maigth affect it (D-       limonene is known to have negative effects on poor-quality ABS).
+      
+- **Q: I'm always getting a clog while using PVA.** 
+ 
+    A: Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should help.       You can use as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
   
