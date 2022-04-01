@@ -341,7 +341,7 @@ Due to the significant changes we made, it's now important to run a set of calib
 
 # Part 5.1: Slicer setup
 
-First of all: Cura is better than any other slicer when it comes to dual extrusion. It migth not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (maybe in the future). PrusaSlicer (and therefore SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura
+First of all: Cura is better than any other slicer when it comes to dual extrusion. It migth not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (but you can always follow the [official setup guide](https://www.simplify3d.com/support/articles/printing-with-multiple-extruders/)). PrusaSlicer (and therefore SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura.
 
 In the printer settings menu, set the number of extruders to 2. Do not enable _Apply extruder offset to Gcode_: we've already set it into Marlin, and an override migth create some conflicts. 
 
@@ -417,7 +417,7 @@ Additional important factors are adressed in the F.A.Q.
 
 - **Q: I'm oozing terribly and can't find a solution.**
  
-    A: See Part 5.2 .
+  **A:** See Part 5.2.
 
 - **Q: Do I really need such an high Toolchange Retraction?**
  
@@ -461,9 +461,24 @@ Additional important factors are adressed in the F.A.Q.
     
 - **Q: What about dissolving filament?**
 
-    **A:** Many materials can be broken down with specific solvents. HIPS is dissolved in a D-Limonene and water solution, ABS is broken down by Acetone, PVA by water.         At the same time, other materials aren't as affected by those solvents, and can endure a bath in a solvent solution. Keep in mind that due to the long exposure         times (PVA and HIPS take hours to completely dissolve) the part made of the "solvent-resistant" filament is also exposed to the agent. This maigth affect it           (D-limonene is known to have negative effects on poor-quality ABS).
+    **A:** Many materials can be broken down with specific solvents. HIPS is dissolved in a D-Limonene and water solution, ABS is broken down by Acetone, PVA by water.         At the same time, other materials aren't as affected by those solvents, and can endure a bath in a solvent solution. Keep in mind that due to the long exposure         times (PVA and HIPS take hours to completely dissolve) the part made of the "solvent-resistant" filament is also exposed to the agent. This migth affect it           (D-limonene is known to have negative effects on poor-quality ABS).
       
 - **Q: I'm always getting a clog while using PVA.** 
  
-    **A:** Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should           help. You can use as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
+  **A:** Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should           help. You can use as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
   
+- **Q: My prints are coming out shifted/misaligned.**
+
+    **A:** Make sure _Apply extruder offset to Gcode_ is disabled in Cura. Double check you extruder offset. You can override it in firmware via the command `M218 [T<index>] [X<offset>] [Y<offset>]`. Save with `M500`.
+   
+- **Q: I forgot to change the start Gcode and I'm printing with only one extruder. Will the second purge line grind the filament?**
+
+  **A:** No, as long as you have `PREVENT_COLD_EXTRUSION` enabled in firmware. You can use the following comands to check:
+  ```
+  M302         ; report current cold extrusion state
+  M302 P0      ; enable cold extrusion checking
+  M302 P1      ; disable cold extrusion checking
+  M302 S0      ; always allow extrusion (disable checking)
+  M302 S170    ; only allow extrusion above 170
+  M302 S170 P1 ; set min extrude temp to 170 but leave disabled
+  ```
