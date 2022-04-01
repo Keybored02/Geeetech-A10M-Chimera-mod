@@ -304,7 +304,7 @@ The main idea here is to re-assign unused pins to the HE1 and T1 headers. The ex
 
 Of course, it's not as straightforward as plugging the connector in another spot and changing pin definition in firmware. Depending on the pins, you'll have to add a resistor and a capacitor for the thermistor. You can find the schematics in the Schematics folder. In case you use another baord, consult the manufacturer's product page.
 
-Once you set the new pin definition, you can add a separate MOSFET module.** DO NOT cheap out on those**. A bad MOSFET when breaks down does so in the open position. Current will keep flowing to your bed, and even thermal runaway protection can't save you in that case. A PSU shutoff relay is recommended (assuming you still have pins to control it).
+Once you set the new pin definition, you can add a separate MOSFET module. **DO NOT cheap out on those.** A bad MOSFET when breaks down does so in the open position. Current will keep flowing to your bed, and even thermal runaway protection can't save you in that case. A PSU shutoff relay is recommended (assuming you still have pins to control it).
 [TriangleLab](https://it.aliexpress.com/item/32855369632.html?spm=a2g0o.store_pc_allProduct.8148356.5.92d56277lYWOKD) and [BigTreeTech](https://it.aliexpress.com/item/32827172643.html?spm=a2g0o.store_pc_allProduct.8148356.4.50a27d10rtKAvP) both have well-specced (on paper at least) 40A and 30A MOSFETs for a reasonable price.
 
 Wiring for those is pretty straightforward. HOT +/- goes to the heater (polarity doesn't matter), SIG+/- goes to the redefined pins for HE1, POWER+/- to the PSU.
@@ -385,7 +385,7 @@ A bit of glossary to orientate yourself in the new UI:
 
 To assign a tool to a specific part, select the part, rigth click and tick the box of the tool you wish to assign it to. 
 
-In the case of a multicolor print, you'll have to assign the tool before merging the parts togheter.
+In the case of a multimaterial prints, you'll have to assign the tool before merging the parts togheter.
 
 As you swap to DualEx, you'll notice that Cura has now a set of drop-down menus that show by default "Not overriden". These are the parameters that you can assign on a per tool basis. You can assign T0 to the support, and T1 to the infill for example. You can use a single extruder to handle all the waste material (Supports, brim, raft, skirt), and the other to the part itself. You can mixmatch them as you desire.
 
