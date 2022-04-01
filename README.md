@@ -12,29 +12,29 @@ A guide on how to install an E3D Chimera hotend on the Geeetech A10M, A20M, A30M
 
 [1.2: A 1-in-1 mod](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-12-a-1-in-1-mod)
 
-[2.0: A 2-in-2 mod]()
+[2.0: A 2-in-2 mod](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-20-a-2-in-2-mod)
 
-[2.1: The board is the limit]()
+[2.1: The board is the limit](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-21-the-board-is-the-limit)
 
-[2.1-bis: The breakout board]()
+[2.1-bis: The breakout board](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-21-bis-the-breakout-board)
 
-[3.0: The idyllic scenario: wiring of a populated board]()
+[3.0: The idyllic scenario: wiring of a populated board](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-30-the-idyllic-scenario-wiring-of-a-populated-board)
 
-[3.1: Firmware for a populated board]()
+[3.1: Firmware for a populated board](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-31-firmware-for-a-populated-board)
 
-[4.0: The apocalyptic scenario: unpopulated or different board]()
+[4.0: The apocalyptic scenario: unpopulated or different board](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-40-the-apocalyptic-scenario-unpopulated-or-different-board)
 
-[4.1: Option 1: soldering the missing components]()
+[4.1: Option 1: soldering the missing components](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-41-option-1-soldering-the-missing-components)
 
-[4.2: Option 2: Repurposing existing pins]()
+[4.2: Option 2: Repurposing existing pins](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-42-option-2-repurposing-existing-pins)
 
-[5.0: Calibrations]()
+[5.0: Calibrations](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-50-calibrations)
 
-[5.1: Slicer setup]()
+[5.1: Slicer setup](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-51-slicer-setup)
 
-[5.2: Printing considerations]()
+[5.2: Printing considerations](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-52-printing-considerations)
 
-[5.3: F.A.Q and troubleshooting]()
+[5.3: F.A.Q and troubleshooting](https://github.com/Keybored02/Geeetech-A10M-Chimera-mod#part-53-faq-and-troubleshooting)
 
 # Introduction
 
