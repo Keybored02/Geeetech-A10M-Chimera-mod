@@ -195,6 +195,8 @@ First of all, check-in Configuration.h that the board definition you're using is
 
 `#define MOTHERBOARD BOARD_GT2560_V3`
 
+Note that I'm not using `#define MOTHERBOARD BOARD_GT2560_V4` despite having a V4 board. This is because the V3 adn v4 pin definitions are identical, and the V4 just inherits the `pins_GT2560_V3.h` files. Instead of going down a parent-child dependancy rabbit hole that migth as well broke after an update, I just use the source. This has no impact on the rest of the code (they shjare the same MCU so even PlatformIO is happy).
+
 If you have a different MoBo, make sure to edit this. You can find a list of all boards under `Marlin\src\core\boards.h`.
 
 Second of all, check that the pins for the second thermistor and heater are defined. In `Marlin\src\pins\mega\pins_GT2560_V3.h` I can see that they are all set correctly:
@@ -297,7 +299,7 @@ The main idea here is to re-assign unused pins to the HE1 and T1 headers. The ex
 - from the end-stops
 - from the Bltouch connector
 
-Of course, it's not as straightforward as plugging the connector in another spot and changing pin definition in firmware. You'll have to add a resistor and a capacitor to the mix (they're thermistors, after all). You can find the schematics in the Schematics folder. 
+Of course, it's not as straightforward as plugging the connector in another spot and changing pin definition in firmware. Depending on the pins, you'll have to add a resistor and a capacitor for the thermistor. You can find the schematics in the Schematics folder. In case you use another baord, consult the manufacturer's product page.
 
 Once you set the new pin definition, you can add a separate MOSFET module.** DO NOT cheap out on those**. A bad MOSFET when breaks down does so in the open position. Current will keep flowing to your bed, and even thermal runaway protection can't save you in that case. A PSU shutoff relay is recommended (assuming you still have pins to control it).
 [TriangleLab](https://it.aliexpress.com/item/32855369632.html?spm=a2g0o.store_pc_allProduct.8148356.5.92d56277lYWOKD) and [BigTreeTech](https://it.aliexpress.com/item/32827172643.html?spm=a2g0o.store_pc_allProduct.8148356.4.50a27d10rtKAvP) both have well-specced (on paper at least) 40A and 30A MOSFETs for a reasonable price.
@@ -310,7 +312,7 @@ Let's say I'm not using the 3rd filament runout sensor and the enable pin from t
 
 Once I found my board in `Marlin\src\core\boards.h`, I can go to the respective file in `Marlin\src\pins`.
 
-I'm gonna comment out (or delete) the definitions I'm changing
+I'm gonna comment out (don't delete them, you migth want to do a rollback in the future) the definitions I'm changing
 ```
 //#define E2_ENABLE_PIN                       41
 //#define FIL_RUNOUT3_PIN                     54
@@ -320,7 +322,7 @@ and instead, I'm gonna add the lines
 #define TEMP_1_PIN                            41 
 #define HEATER_1_PIN                          54
 ```
-with the pins of your choice.
+with the pins of my choice.
 
 You can now follow the instructions in Part 3.1 to complete the extruder setup.
 
@@ -328,15 +330,15 @@ You can now follow the instructions in Part 3.1 to complete the extruder setup.
 
 Due to the significant changes we made, it's now important to run a set of calibration tests. In order:
 
-1. Level the Z heigth of the two nozzles. With the two nozzles really close (but not in contact) with the bed, loosen the 4 grub screws on the side, and let both nozzles drop to the same height. Make sure to do so on a realtively flat spot of the bed (center should work fine). Check that they're actually leveled (push them down gently if not) and tigthen the grub screws really well. 
+1. Level the Z heigth of the two nozzles. With the two nozzles really close (but not in contact) with the bed, loosen the 4 grub screws on the side, and let both nozzles drop to the same height. Make sure to do so on a realtively flat spot of the bed (center should work fine). Check that they're actually leveled (push them down gently if not) and tigthen the grub screws really well. For a more detailed procedure, see [this video](https://www.youtube.com/watch?v=aQbqc2br5yo).
 2. Adjust the Zmin end-stop or the BLtouch mount to avoid crushing the nozzles into the bed.
 3. Set the Z probe-to-nozzle offset using nozzle 1 as a reference.
 4. Run a PID tuning for both extruders (separately).
-5. Run a full set of retraction, flow, temperature and linear advance. I always suggest [Teaching Tech's guide](https://teachingtechyt.github.io/calibration.html).
+5. Run a full set of retraction, flow, temperature and linear advance tests. I always suggest [Teaching Tech's guide](https://teachingtechyt.github.io/calibration.html).
 
 # Part 5.1: Slicer setup
 
-First of all: Cura is better than any other slicer when it comes to dual extrusion. It migth not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (maybe in the future). PrusaSlicer (and SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura
+First of all: Cura is better than any other slicer when it comes to dual extrusion. It migth not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (maybe in the future). PrusaSlicer (and therefore SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura
 
 In the printer settings menu, set the number of extruders to 2. Do not enable _Apply extruder offset to Gcode_: we've already set it into Marlin, and an override migth create some conflicts. 
 
@@ -370,8 +372,84 @@ Modify it to your desire. Extruder start and end Gcode will be discussed later.
 
 Under the Dual Extrusion menu we'll se the _Nozzle Switch Retraction Speed_ to our current retraction speed (I use 40mm/s for PLA, but yours migth be different). _Nozzle Switch Retraction Distance_ should be set equal to the lenght of the heating zone. For a V6 block that's 16mm, plus 4mm circa of protuding nozzle. 18-20mm is good starting point.
 
+From the Cura Marketplace, install the Duplicate plugin. It will allow you to easily copy the settings on one extruder to the second one. Access it from the top bar, Extensions->Duplicate.
+
+A bit of glossary to orientate yourself in the new UI:
+- **Tool:** Another term used to indicate the extruder.
+- **Toolchange:** The operation of deactivating the currently working tool and activating the other. 
+- **T0, T1:** In Gcode, you can adress a precise tool by using T0 and T1 commands, followed by the code you want it to perform.
+- **Toolchange script/Extruder Start-End Gcode:** A set of user-defined commands that is executed every time the tool is activated ot deactivated.
+
+To assign a tool to a specific part, select the part, rigth click and tick the box of the tool you wish to assign it to. 
+
+In the case of a multicolor print, you'll have to assign the tool before merging the parts togheter.
+
+As you swap to DualEx, you'll notice that Cura has now a set of drop-down menus that show by default "Not overriden". These are the parameters that you can assign on a per tool basis. You can assign T0 to the support, and T1 to the infill for example. You can use a single extruder to handle all the waste material (Supports, brim, raft, skirt), and the other to the part itself. You can mixmatch them as you desire.
+
 For now, this will be sufficient. More in-depth discussions are present in Part 5.2.
 
 # Part 5.2: Printing considerations
 
+When printing with two extruders, there are two key factors that will always come into play:
 
+1. **Internal pressure in heat zone**: that's where oozing comes from. We'll adress later a couple of workarounds.
+2. **Standby temperatures and materials**: To avoid excessive oozing, setting a standby temperature way lower than the printing temperature will help a lot. It's also very important for materials that tend to "cook" if kept at printing temperature without being extruded. PVA is one those, but PETG and ASA can be also be tricky. A cooked filamnet will lead to a clog.
+
+To solve point 1, you can try a few things. All are contributing factors, but 
+- Re-calibrate your E-steps, possibly using separate values for each Extruder.
+- Align the two nozzles on the Z axis (as previously mentioned, this is crucial).
+- Try sligthly higher retraction values.
+- If you've kept it stock until now, **set _Toolchange Retraction Length_ to an higher value**. Be aware that excessive values will start to cause blobs and zits from un-retract moves.
+- Enable _Coasting_. It's not really extremely effective, but can help with oozing and doesn't require additional setup.
+- Enable _Combing_, preferrably either _Not on Outer Surfaces_ or _Within Infill_.
+- **Enable Linear Advance or Pressure Advance in firmware**. This parameter uses a series of fast accelerations to dispose of the residual pressure in nozzle after an extrusion move. Theoretically, it will completely eliminate oozing caused by pressure build-up. Remeber to disable _Pressure Advance, Coast at end/Coasting, Extra restart length after retract, Wipe while retract, and Combing_ in the slicer, as they would interfere. Once you have properly set K value, you can also try and lower your retractions.
+- **Lower your printing temperatures:** If they're too high, molten material will eventually ooze out.
+- **Enable the ooze shield:**  As a last resort, this setting will build a wall around the part for the unactive nozzle to wipe on. There's no active wipe sequence, and the wiping happens everytime the second nozzle goes over the shield. This migth happen frequently on smaller parts, or very rarely on larger ones. Properly setting nozzle height is crucial here.
+
+Point 2 is easier to get right. Just lower your standby temperature. Be aware that this will increase printng time significantly, as the tool needs to heat up again at each toolchange. It also delivers the cleanest results. 
+
+Additional important factors are adressed in the F.A.Q.
+
+# Part 5.3: F.A.Q and troubleshooting
+
+- **Q: I'm oozing terribly and can't find a solution.**
+- A: See Part 5.2 
+
+- **Q: Do I really need such an high Toolchange Retraction?**
+- A: Assuming you already set Linear Advance, you can lower it by a lot. Turning it off completely is not recommended.
+
+- **Q: I'm always getting a clog while using PVA.** 
+- A: Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C.
+
+- Q: **Do I need two separate part cooling fans?**
+- A: No, and they are actually detrimental to the overall cooling performance. Since only one extruder is operating at a time, the slicer sets the fan speed according to which tool is enabled. At toolchange, the fan will follow the speed set for the second tool, being it higher, lower, or the same. Dual fans cool only one side of the nozzle. A single fan with a dual fanduct can do both sides at the same time (albeit with a lower flow).
+
+- Q: **My fan doesn't start, but it's working perfectly otherwise.**
+- A: In the start Gcode, make sure to switch back to T0 after T1 is done purging.
+
+- Q: **Does the fact that the two blocks are close to one another affect the temperatures?**
+- A: Yes and no. If you print with only one extruder, during printing you'll notice the second extruder rising over T<sub>ambient</sub> by a few degrees. Silicon socks help tremendoulsy with this issue. The nominal power of the heating cartridge is believed to have an influence too. I can say that with 40W cartridges operating at 180C there's no cross-contamination. Higher ratungs migth have a negative effect. 
+
+- Q:
+- A:
+
+- Q:
+- A:
+
+- Q:
+- A:
+
+- Q:
+- A:
+
+- Q:
+- A:
+
+- Q:
+- A:
+
+- Q:
+- A:
+
+- Q:
+- A:
