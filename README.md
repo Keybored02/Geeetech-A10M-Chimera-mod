@@ -333,19 +333,19 @@ You can now follow the instructions in Part 3.1 to complete the extruder setup.
 
 Due to the significant changes we made, it's now important to run a set of calibration tests. In order:
 
-1. Level the Z heigth of the two nozzles. With the two nozzles really close (but not in contact) with the bed, loosen the 4 grub screws on the side, and let both nozzles drop to the same height. Make sure to do so on a realtively flat spot of the bed (center should work fine). Check that they're actually leveled (push them down gently if not) and tigthen the grub screws really well. For a more detailed procedure, see [this video](https://www.youtube.com/watch?v=aQbqc2br5yo).
+1. Level the Z height of the two nozzles. With the two nozzles close (but not in contact) with the bed, loosen the 4 grub screws on the side, and let both nozzles drop to the same height. Make sure to do so on a relatively flat spot of the bed (the center should work fine). Check that they're leveled (push them down gently if not) and tighten the grub screws well. For a more detailed procedure, see [this video](https://www.youtube.com/watch?v=aQbqc2br5yo).
 2. Adjust the Zmin end-stop or the BLtouch mount to avoid crushing the nozzles into the bed.
 3. Set the Z probe-to-nozzle offset using nozzle 1 as a reference.
 4. Run a PID tuning for both extruders (separately).
-5. Run a full set of retraction, flow, temperature and linear advance tests. I always suggest [Teaching Tech's guide](https://teachingtechyt.github.io/calibration.html).
+5. Run a full set of retraction, flow, temperature, and linear advance tests. I always suggest [Teaching Tech's guide](https://teachingtechyt.github.io/calibration.html).
 
 # Part 5.1: Slicer setup
 
-First of all: Cura is better than any other slicer when it comes to dual extrusion. It migth not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (but you can always follow the [official setup guide](https://www.simplify3d.com/support/articles/printing-with-multiple-extruders/)). PrusaSlicer (and therefore SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura.
+First of all: Cura is better than any other slicer when it comes to dual extrusion. It might not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (but you can always follow the [official setup guide](https://www.simplify3d.com/support/articles/printing-with-multiple-extruders/)). PrusaSlicer (and therefore SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura.
 
-In the printer settings menu, set the number of extruders to 2. Do not enable _Apply extruder offset to Gcode_: we've already set it into Marlin, and an override migth create some conflicts. 
+In the printer settings menu, set the number of extruders to 2. Do not enable _Apply extruder offset to Gcode_: we've already set it into Marlin, and an override might create some conflicts. 
 
-We'll set the Extruder 1 offset to 0.0 for both X and Y. The extruder 2 offset will be 20.mm on X and 0.0 on Y. _Cooling fan number_ should be set to 0 if you use only one fan for both extruders.
+We'll set the Extruder 1 offset to 0.0 for both X and Y. The extruder 2 offsets will be 20 mm on X and 0.0 on Y. _Cooling fan number_ should be set to 0 if you use only one fan for both extruders.
 
 In terms of start Gcode, I use the following:
 ```
@@ -373,45 +373,45 @@ T0; switch back to T0 to avoid Fan not starting
 ```
 Modify it to your desire. Extruder start and end Gcode will be discussed later.
 
-Under the Dual Extrusion menu we'll se the _Nozzle Switch Retraction Speed_ to our current retraction speed (I use 40mm/s for PLA, but yours migth be different). _Nozzle Switch Retraction Distance_ should be set equal to the lenght of the heating zone. For a V6 block that's 16mm, plus 4mm circa of protuding nozzle. 18-20mm is good starting point.
+Under the Dual Extrusion menu, we'll see the _Nozzle Switch Retraction Speed_ to our current retraction speed (I use 40mm/s for PLA, but yours might be different). _Nozzle Switch Retraction Distance_ should be set equal to the length of the heating zone. For a V6 block that's 16mm, plus 4mm circa of protruding nozzle. 18-20mm is a good starting point.
 
 From the Cura Marketplace, install the Duplicate plugin. It will allow you to easily copy the settings on one extruder to the second one. Access it from the top bar, Extensions->Duplicate.
 
 A bit of glossary to orientate yourself in the new UI:
 - **Tool:** Another term used to indicate the extruder.
 - **Toolchange:** The operation of deactivating the currently working tool and activating the other. 
-- **T0, T1:** In Gcode, you can adress a precise tool by using T0 and T1 commands, followed by the code you want it to perform.
-- **Toolchange script/Extruder Start-End Gcode:** A set of user-defined commands that is executed every time the tool is activated ot deactivated.
+- **T0, T1:** In Gcode, you can address a precise tool by using T0 and T1 commands, followed by the code you want it to perform.
+- **Tool change script/Extruder Start-End Gcode:** A set of user-defined commands that is executed every time the tool is activated or deactivated.
 
-To assign a tool to a specific part, select the part, rigth click and tick the box of the tool you wish to assign it to. 
+To assign a tool to a specific part, select the part, right-click and tick the box of the tool you wish to assign it to. 
 
-In the case of a multimaterial prints, you'll have to assign the tool before merging the parts togheter.
+In the case of multi-material prints, you'll have to assign the tool before merging the parts.
 
-As you swap to DualEx, you'll notice that Cura has now a set of drop-down menus that show by default "Not overriden". These are the parameters that you can assign on a per tool basis. You can assign T0 to the support, and T1 to the infill for example. You can use a single extruder to handle all the waste material (Supports, brim, raft, skirt), and the other to the part itself. You can mixmatch them as you desire.
+As you swap to DualEx, you'll notice that Cura has now a set of drop-down menus that show by default "Not overridden". These are the parameters that you can assign on a per tool basis. You can assign T0 to the support, and T1 to the infill for example. You can use a single extruder to handle all the waste material (Supports, brim, raft, skirt), and the other for the part itself. You can mix-match them as you desire.
 
 For now, this will be sufficient. More in-depth discussions are present in Part 5.2.
 
 # Part 5.2: Printing considerations
 
-When printing with two extruders, there are two key factors that will always come into play:
+When printing with two extruders, two key factors will always come into play:
 
-1. **Internal pressure in heat zone**: that's where oozing comes from. The nozzle that is not extruding is dragged across the part, leaking all over it (especilly on the walls, as it will "wipe" itself over them). We'll adress later a couple of workarounds.
-2. **Standby temperatures and materials**: To avoid excessive oozing, setting a standby temperature way lower than the printing temperature will help a lot. It's also very important for materials that tend to "cook" if kept at printing temperature without being extruded. PVA is one those, but PETG and ASA can be also be tricky. A cooked filamnet will lead to a clog.
+1. **Internal pressure in heat zone**: that's where oozing comes from. The nozzle that is not extruding is dragged across the part, leaking all over it (especially on the walls, as it will "wipe" itself over them). We'll address later a couple of workarounds.
+2. **Standby temperatures and materials**: To avoid excessive oozing, setting a standby temperature way lower than the printing temperature will help a lot. It's also very important for materials that tend to "cook" if kept at printing temperature without being extruded. PVA is one of those, but PETG and ASA can also be tricky. A cooked filament will lead to a clog.
 
 To solve point 1, you can try a few things. All are contributing factors, but 
 - Re-calibrate your E-steps, possibly using separate values for each Extruder.
-- Align the two nozzles on the Z axis (as previously mentioned, this is crucial).
-- Try sligthly higher retraction values.
-- If you've kept it stock until now, **set _Toolchange Retraction Length_ to an higher value**. Be aware that excessive values will start to cause blobs and zits from un-retract moves.
-- Enable _Coasting_. It's not really extremely effective, but can help with oozing and doesn't require additional setup.
-- Enable _Combing_, preferrably either _Not on Outer Surfaces_ or _Within Infill_.
-- **Enable Linear Advance or Pressure Advance in firmware**. This parameter uses a series of fast accelerations to dispose of the residual pressure in nozzle after an extrusion move. Theoretically, it will completely eliminate oozing caused by pressure build-up. Remeber to disable _Pressure Advance, Coast at end/Coasting, Extra restart length after retract, Wipe while retract, and Combing_ in the slicer, as they would interfere. Once you have properly set K value, you can also try and lower your retractions.
+- Align the two nozzles on the Z-axis (as previously mentioned, this is crucial).
+- Try slightly higher retraction values.
+- If you've kept it stock until now, **set _Toolchange Retraction Length_ to a higher value**. Be aware that excessive values will start to cause blobs and zits from un-retract moves.
+- Enable _Coasting_. It's not extremely effective, but can help with oozing and doesn't require additional setup.
+- Enable _Combing_, preferably either _Not on Outer Surfaces_ or _Within Infill_.
+- **Enable Linear Advance or Pressure Advance in firmware**. This parameter uses a series of fast accelerations to dispose of the residual pressure in the nozzle after an extrusion move. Theoretically, it will eliminate oozing caused by pressure build-up. Remember to disable _Pressure Advance, Coast at end/Coasting, Extra restart length after retract, Wipe while retract, and Combing_ in the slicer, as they would interfere. Once you have properly set the K value, you can also try and lower your retractions.
 - **Lower your printing temperatures:** If they're too high, molten material will eventually ooze out.
-- **Enable the ooze shield:**  As a last resort, this setting will build a wall around the part for the unactive nozzle to wipe on. There's no active wipe sequence, and the wiping happens everytime the second nozzle goes over the shield. This migth happen frequently on smaller parts, or very rarely on larger ones. Properly setting nozzle height is crucial here.
+- **Enable the ooze shield:**  As a last resort, this setting will build a wall around the part for the unactive nozzle to wipe on. There's no active wipe sequence, and the wiping happens every time the second nozzle goes over the shield. This might happen frequently on smaller parts, or very rarely on larger ones. Properly setting nozzle height is crucial here.
 
-Point 2 is easier to get right. Just lower your standby temperature. Be aware that this will increase printng time significantly, as the tool needs to heat up again at each toolchange. It also delivers the cleanest results. 
+Point 2 is easier to get right. Just lower your standby temperature. Be aware that this will increase printing time significantly, as the tool needs to heat up again at each tool change. It also delivers the cleanest results. 
 
-Additional important factors are adressed in the F.A.Q.
+Additional important factors are addressed in the F.A.Q.
 
 # Part 5.3: F.A.Q and troubleshooting
 
@@ -419,17 +419,17 @@ Additional important factors are adressed in the F.A.Q.
  
   **A:** See Part 5.2.
 
-- **Q: Do I really need such an high Toolchange Retraction?**
+- **Q: Do I need such a high Tool change Retraction?**
  
     **A:** Assuming you already set Linear Advance, you can lower it by a lot. Turning it off completely is not recommended.
   
 - **Q: Is the Ooze shield the same as a Draft shield?**
   
-    **A:** No: the ooze shield is designed to have the nozzles rubbing into it. It's also built alternating the two tools.
+    **A:** No: the ooze shield is designed to have the nozzles rubbing into it. It's also built by alternating the two tools.
 
 - **Q: Do I need a Prime tower?**
   
-    **A:** No. That is meant to used in a 2-in-1 extruder, where you need to purge wehn transitioning from a material to another in order to avoid material blends. It         doens't help in our case. An ooze shield is way more effective.
+    **A:** No. That is meant to be used in a 2-in-1 extruder, where you need to purge when transitioning from one material to another to avoid material blends. It doesn't help in our case. An ooze shield is way more effective.
     
 - **Q: I want a specific tool to start first, how can I do that?**
   
@@ -437,7 +437,7 @@ Additional important factors are adressed in the F.A.Q.
 
 - **Q: **Do I need two separate part cooling fans?****
  
-  **A:** No, and they are actually detrimental to the overall cooling performance. Since only one extruder is operating at a time, the slicer sets the fan speed           according to which tool is enabled. At toolchange, the fan will follow the speed set for the second tool, being it higher, lower, or the same. Dual fans cool only     one side of the nozzle. A single fan with a dual fanduct can do both sides at the same time (albeit with a lower flow).
+  **A:** No, and they are detrimental to the overall cooling performance. Since only one extruder is operating at a time, the slicer sets the fan speed according to which tool is enabled. At tool change, the fan will follow the speed set for the second tool, being it higher, lower, or the same. Dual fans cool only one side of the nozzle. A single fan with a dual fan duct can do both sides at the same time (albeit with a lower flow).
 
 - **Q: **My fan doesn't start, but it's working perfectly otherwise.****
  
@@ -445,35 +445,35 @@ Additional important factors are adressed in the F.A.Q.
 
 - **Q: **Does the fact that the two blocks are close to one another affect the temperatures?****
  
-  **A:** Yes and no. If you print with only one extruder, during printing you'll notice the second extruder rising over T<sub>ambient</sub> by a few degrees. Silicon       socks help tremendoulsy with this issue. The nominal power of the heating cartridge is believed to have an influence too. I can say that with 40W cartridges           operating at 180C there's no cross-contamination. PID does its job (poorly as always, but still). If the two print temps differ a lot (e.g. PLA and Nylon), you         migth want to set the lowest one even lower to compensate. In general, temperature stability ins't an issue.
+  **A:** Yes and no. If you print with only one extruder, during printing you'll notice the second extruder rising over T<sub>ambient</sub> by a few degrees. Silicon socks help tremendously with this issue. The nominal power of the heating cartridge is believed to have an influence too. I can say that with 40W cartridges operating at 180C there's no cross-contamination. PID does its job (poorly as always, but still). If the two print temps differ a lot (e.g. PLA and Nylon), you might want to set the lowest one even lower to compensate. In general, temperature stability isn't an issue.
   
-- **Q: The heatsink on the Chimera seems a bit underspecced. Will it provide sufficient cooling and avoid heat surges?**
+- **Q: The heatsink on the Chimera seems a bit under spec. Will it provide sufficient cooling and avoid heat surges?**
 
-  **A:** Tough question. Short answer: it will perform fine for PLA and most lower-temp filaments. It will not be exchange heat with the ambient fast enough at higher     tempertaures (280+C). A temporary fix would be to use a 3020 fan, and adding smaller heatsinks on the sides to encrease the surface area. The most effective           solution   for this is watercooling it with a Chimera Aqua, available both on [E3D's site](https://e3d-online.com/products/chimera) and from [Trianglelab](https://it.aliexpress.com/item/32866664544.html?spm=a2g0o.store_pc_allProduct.8148356.1.43ab27c6O61DmY) or [Mellow Store](https://it.aliexpress.com/item/32699836914.html?spm=a2g0o.store_pc_allProduct.8148356.8.4e6d791f4pitm1). A [water cooling kit](https://it.aliexpress.com/item/32850217541.html?spm=a2g0o.store_pc_allProduct.8148356.2.62c761f1yciGhX) is required.
+  **A:** Tough question. Short answer: it will perform fine for PLA and most lower-temp filaments. It will not be exchange heat with the ambient fast enough at higher temperatures (280+C). A temporary fix would be to use a 3020 fan and add smaller heatsinks on the sides to increase the surface area. The most effective solution for this is water-cooling it with a Chimera Aqua, available both on [E3D's site](https://e3d-online.com/products/chimera) and from [Trianglelab](https://it.aliexpress.com/item/32866664544.html?spm=a2g0o.store_pc_allProduct.8148356.1.43ab27c6O61DmY) or [Mellow Store](https://it.aliexpress.com/item/32699836914.html?spm=a2g0o.store_pc_allProduct.8148356.8.4e6d791f4pitm1). A [water cooling kit](https://it.aliexpress.com/item/32850217541.html?spm=a2g0o.store_pc_allProduct.8148356.2.62c761f1yciGhX) is required.
 
 - **Q: Can I print with every material combination I want?**
   
-    **A:** No. Certain material combos adhere well togheter, others don't adhere at all. Depending on what you're trying to achieve you need to select them carefully.       For instance, if PLA adheres poorly to PETG, that makes it a great support and a terrible infill material to use in combination with PETG. The following table         acts as a reference (pulled from this [support page](https://support.ultimaker.com/hc/en-us/articles/360011461000-Ultimaker-3-Material-compatibility)):
+    **A:** No. Certain material combos adhere well together, others don't adhere at all. Depending on what you're trying to achieve you need to select them carefully.       For instance, if PLA adheres poorly to PETG, that makes it a great support and a terrible infill material to use in combination with PETG. The following table         acts as a reference (pulled from this [support page](https://support.ultimaker.com/hc/en-us/articles/360011461000-Ultimaker-3-Material-compatibility)):
     
     ![material compatibility Ultimaker](materials_compatibility_updated.png)
     
-   Generally speaking, it's not recommended to use two filaments with very different printing temperatures. The hotter one will soften the other, leading to support      failure, parts blending, and an overall poor print quality. Try to combine materials with similar T<sub>glass</sub> values. For example, ABS and HIPS are a            great combo because they don't soften each other. ABS+PVA can be troublesome, depending on the quality of the PVA filament. Nylon and PC need specific high-temp        support filaments, like BVOH, Helios Support, DPA-100, Ionic Hi-Temp Hybrid, Lay Cloud PVA, High-T-Lay PVA.
+   Generally speaking, it's not recommended to use two filaments with very different printing temperatures. The hotter one will soften the other, leading to support failure, parts blending, and overall poor print quality. Try to combine materials with similar T<sub>glass</sub> values. For example, ABS and HIPS are a            great combo because they don't soften each other. ABS+PVA can be troublesome, depending on the quality of the PVA filament. Nylon and PC need specific high-temp support filaments, like BVOH, Helios Support, DPA-100, Ionic Hi-Temp Hybrid, Lay Cloud PVA, and High-T-Lay PVA.
     
 - **Q: What about dissolving filament?**
 
-    **A:** Many materials can be broken down with specific solvents. HIPS is dissolved in a D-Limonene and water solution, ABS is broken down by Acetone, PVA by water.         At the same time, other materials aren't as affected by those solvents, and can endure a bath in a solvent solution. Keep in mind that due to the long exposure         times (PVA and HIPS take hours to completely dissolve) the part made of the "solvent-resistant" filament is also exposed to the agent. This migth affect it           (D-limonene is known to have negative effects on poor-quality ABS).
+    **A:** Many materials can be broken down with specific solvents. HIPS is dissolved in a D-Limonene and water solution, ABS is broken down by Acetone, and PVA by water.         At the same time, other materials aren't as affected by those solvents and can endure a bath in a solvent solution. Keep in mind that due to the long exposure times (PVA and HIPS take hours to completely dissolve) the part made of the "solvent-resistant" filament is also exposed to the agent. This might affect it           (D-limonene is known to have negative effects on poor-quality ABS).
       
 - **Q: I'm always getting a clog while using PVA.** 
  
-  **A:** Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should           help. You can use as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
+  **A:** Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should help. You can use it as a reference [Ultimaker's recommended settings](https://support.ultimaker.com/hc/en-us/articles/360012055939-How-to-print-with-Ultimaker-PVA).
   
 - **Q: My prints are coming out shifted/misaligned.**
 
-    **A:** Make sure _Apply extruder offset to Gcode_ is disabled in Cura. Double check you extruder offset. You can override it in firmware via the command `M218 [T<index>] [X<offset>] [Y<offset>]`. Save with `M500`.
+    **A:** Make sure _Apply extruder offset to Gcode_ is disabled in Cura. Double-check your extruder offset. You can override it in firmware via the command `M218 [T<index>] [X<offset>] [Y<offset>]`. Save with `M500`.
    
 - **Q: I forgot to change the start Gcode and I'm printing with only one extruder. Will the second purge line grind the filament?**
 
-  **A:** No, as long as you have `PREVENT_COLD_EXTRUSION` enabled in firmware. You can use the following comands to check:
+  **A:** No, as long as you have `PREVENT_COLD_EXTRUSION` enabled in firmware. You can use the following commands to check:
   ```
   M302         ; report current cold extrusion state
   M302 P0      ; enable cold extrusion checking
@@ -482,3 +482,4 @@ Additional important factors are adressed in the F.A.Q.
   M302 S170    ; only allow extrusion above 170
   M302 S170 P1 ; set min extrude temp to 170 but leave disabled
   ```
+
