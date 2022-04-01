@@ -392,7 +392,7 @@ For now, this will be sufficient. More in-depth discussions are present in Part 
 
 When printing with two extruders, there are two key factors that will always come into play:
 
-1. **Internal pressure in heat zone**: that's where oozing comes from. We'll adress later a couple of workarounds.
+1. **Internal pressure in heat zone**: that's where oozing comes from. The nozzle that is not extruding is dragged across the part, leaking all over it (especilly on the walls, as it will "wipe" itself over them). We'll adress later a couple of workarounds.
 2. **Standby temperatures and materials**: To avoid excessive oozing, setting a standby temperature way lower than the printing temperature will help a lot. It's also very important for materials that tend to "cook" if kept at printing temperature without being extruded. PVA is one those, but PETG and ASA can be also be tricky. A cooked filamnet will lead to a clog.
 
 To solve point 1, you can try a few things. All are contributing factors, but 
@@ -413,43 +413,44 @@ Additional important factors are adressed in the F.A.Q.
 # Part 5.3: F.A.Q and troubleshooting
 
 - **Q: I'm oozing terribly and can't find a solution.**
-- A: See Part 5.2 
+ 
+  A: See Part 5.2 .
 
 - **Q: Do I really need such an high Toolchange Retraction?**
-- A: Assuming you already set Linear Advance, you can lower it by a lot. Turning it off completely is not recommended.
+ 
+  A: Assuming you already set Linear Advance, you can lower it by a lot. Turning it off completely is not recommended.
 
 - **Q: I'm always getting a clog while using PVA.** 
-- A: Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C.
+ 
+  A: Lower your standby temperature. For instance, I print PLA at 180, with a standby value of 170C. For PVA, printing at 205C and standby at 180-190C should help.
 
-- Q: **Do I need two separate part cooling fans?**
-- A: No, and they are actually detrimental to the overall cooling performance. Since only one extruder is operating at a time, the slicer sets the fan speed according to which tool is enabled. At toolchange, the fan will follow the speed set for the second tool, being it higher, lower, or the same. Dual fans cool only one side of the nozzle. A single fan with a dual fanduct can do both sides at the same time (albeit with a lower flow).
+- **Q: **Do I need two separate part cooling fans?****
+ 
+  A: No, and they are actually detrimental to the overall cooling performance. Since only one extruder is operating at a time, the slicer sets the fan speed according to which tool is enabled. At toolchange, the fan will follow the speed set for the second tool, being it higher, lower, or the same. Dual fans cool only one side of the nozzle. A single fan with a dual fanduct can do both sides at the same time (albeit with a lower flow).
 
-- Q: **My fan doesn't start, but it's working perfectly otherwise.**
-- A: In the start Gcode, make sure to switch back to T0 after T1 is done purging.
 
-- Q: **Does the fact that the two blocks are close to one another affect the temperatures?**
-- A: Yes and no. If you print with only one extruder, during printing you'll notice the second extruder rising over T<sub>ambient</sub> by a few degrees. Silicon socks help tremendoulsy with this issue. The nominal power of the heating cartridge is believed to have an influence too. I can say that with 40W cartridges operating at 180C there's no cross-contamination. Higher ratungs migth have a negative effect. 
+- **Q: **My fan doesn't start, but it's working perfectly otherwise.****
+ 
+  A: In the start Gcode, make sure to switch back to T0 after T1 is done purging.
 
-- Q:
-- A:
+- **Q: **Does the fact that the two blocks are close to one another affect the temperatures?****
+ 
+  A: Yes and no. If you print with only one extruder, during printing you'll notice the second extruder rising over T<sub>ambient</sub> by a few degrees. Silicon socks help tremendoulsy with this issue. The nominal power of the heating cartridge is believed to have an influence too. I can say that with 40W cartridges operating at 180C there's no cross-contamination. PID does its job (poorly as always, but still). If the two print temps differ a lot (e.g. PLA and Nylon), you migth want to set the lowest one even lower to compensate. In general, temperature stability ins't an issue.
 
-- Q:
-- A:
+- **Q: Can I print with every material combination I want?**
+  
+    A: No. Certain material combos adhere well togheter, others don't adhere at all. Depending on what you're trying to achieve you need to select them scarefully. For instance, if PLA adheres poorly to PETG, that makes it a great support material and a terrible infill material to use in combination with PETG.
 
-- Q:
-- A:
+- **Q: Is the Ooze shield the same as a Draft shield?**
+  
+   A: No: the ooze shield is designed to have the nozzles rubbing into it. It's also built alternating the two tools.
 
-- Q:
-- A:
+- **Q: I want a specific tool to start first, how can I do that?**
+  
+    A: Assign a brim, a skirt, a raft to it. This overrides the hierarchy and will make it go first.
 
-- Q:
-- A:
-
-- Q:
-- A:
-
-- Q:
-- A:
-
-- Q:
-- A:
+- **Q: Do I need a Prime tower?**
+  
+    A: No. That is meant to used in a 2-in-1 extruder, where you need to purge wehn transitioning from a material to another in order to avoid material blends. It doens't help in our case. An ooze shield is way more effective
+  
+  
