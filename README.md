@@ -302,7 +302,7 @@ The main idea here is to re-assign unused pins to the HE1 and T1 headers. The ex
 - from the end-stops
 - from the Bltouch connector
 
-Of course, it's not as straightforward as plugging the connector in another spot and changing pin definition in firmware. Depending on the pins, you'll have to add a resistor and a capacitor for the thermistor. You can find the schematics in the Schematics folder. In case you use another baord, consult the manufacturer's product page.
+Of course, it's not as straightforward as plugging the connector in another spot and changing pin definition in firmware. Depending on the pins, you'll have to add a pullup resistor (4.7Kohm). You can find the schematics in the Schematics folder. In case you use another baord, consult the manufacturer's product page.
 
 Once you set the new pin definition, you can add a separate MOSFET module. **DO NOT cheap out on those.** A bad MOSFET when breaks down does so in the open position. Current will keep flowing to your bed, and even thermal runaway protection can't save you in that case. A PSU shutoff relay is recommended (assuming you still have pins to control it).
 [TriangleLab](https://it.aliexpress.com/item/32855369632.html?spm=a2g0o.store_pc_allProduct.8148356.5.92d56277lYWOKD) and [BigTreeTech](https://it.aliexpress.com/item/32827172643.html?spm=a2g0o.store_pc_allProduct.8148356.4.50a27d10rtKAvP) both have well-specced (on paper at least) 40A and 30A MOSFETs for a reasonable price.
