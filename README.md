@@ -341,7 +341,7 @@ Due to the significant changes we made, it's now important to run a set of calib
 
 # Part 5.1: Slicer setup
 
-First of all: Cura is better than any other slicer when it comes to dual extrusion. It might not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (but you can always follow the [official setup guide](https://www.simplify3d.com/support/articles/printing-with-multiple-extruders/)). PrusaSlicer (and therefore SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura.
+First of all: Cura is sligthly better than other slicers when it comes to dual extrusion. It might not be the best slicing engine or the easiest in terms of interface, but it was designed to fully leverage machines (Ultimaker S3 and newer) with dual extruders. Another extremely good tool would be Simplify3D, but given the cost and current support status, I won't cover it now (but you can always follow the [official setup guide](https://www.simplify3d.com/support/articles/printing-with-multiple-extruders/)). PrusaSlicer (and therefore SuperSlicer) is also catching up in terms of multi extruder support (v2.4.0 was a great jump forward), but there's still much to do. So here's what to do in Cura.
 
 In the printer settings menu, set the number of extruders to 2. Do not enable _Apply extruder offset to Gcode_: we've already set it into Marlin, and an override might create some conflicts. 
 
